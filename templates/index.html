@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Gestão de Backlog{% endblock %}
+
+{% block content %}
+<div class="welcome-container">
+  <h1>Bem-vindo ao Sistema de Gestão de Backlog</h1>
+  <p class="welcome-message">
+    Para começar, recomendamos realizar o cadastro base do sistema. Isso garantirá uma melhor organização e controle do
+    seu backlog.
+  </p>
+
+  <div class="cards">
+    <!-- Título acima do container -->
+    <h2 class="section-title">Cadastro Base</h2>
+
+    <!-- Container Cadastro Base -->
+    <div class="card-section">
+      <div class="card-grid">
+        <div class="card">
+          <i class="fas fa-tags card-icon"></i>
+          <h3>Categoria Backlog</h3>
+          <p>Cadastre as categorias que organizam suas user stories por tipo ou área funcional.</p>
+          <a href="/categoria" class="card-link">Acessar</a>
+        </div>
+
+        <div class="card">
+          <i class="fas fa-cogs card-icon"></i>
+          <h3>Funcionalidades</h3>
+          <p>Defina as funcionalidades principais do sistema para associar às user stories.</p>
+          <a href="{{ url_for('app.funcionalidades') }}" class="card-link">Acessar</a>
+        </div>
+
+        <div class="card">
+          <i class="fas fa-tasks card-icon"></i>
+          <h3>Status</h3>
+          <p>Configure os status que representam o progresso das user stories no fluxo de trabalho.</p>
+          <a href="/status" class="card-link">Acessar</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Container Backlog e Organogrma-->
+    <div class="backlog-container">
+      <div class="card">
+        <i class="fas fa-clipboard-list card-icon"></i>
+        <h3>Backlog</h3>
+        <p>Visualize, cadastre e gerencie todas as user stories do seu projeto de forma centralizada.</p>
+        <a href="{{ url_for('app.backlog') }}" class="card-link">Acessar</a>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-sitemap card-icon"></i>
+        <h3>Organograma</h3>
+        <p>Visualize a estrutura hierárquica das User Stories por categoria e status, facilitando o entendimento do
+          escopo do produto.</p>
+        <a href="/organograma" class="card-link">Acessar</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

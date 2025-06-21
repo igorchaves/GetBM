@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Gestão de Backlog{% endblock %}
+
+{% block content %}
+<form method="POST" action="/salvar-itens">
+    <div>
+        <label for="itemInput">Novo item:</label>
+        <input type="text" id="itemInput" placeholder="Digite o item">
+        <button type="button" onclick="addItem()">Adicionar</button>
+    </div>
+
+    <ul id="itemList"></ul>
+
+    <!-- Campo oculto para enviar os dados -->
+    <input type="hidden" name="selectedItems" id="selectedItems">
+    <!-- componente aqui -->
+    <button type="submit">Salvar</button>
+</form>
+
+
+
+<script>
+    const items = [];
+
+    function addItem() {
+        const input = document.getElementById('itemInput');
+        const value = input.value.trim();
+        if (value) {
+            const item = { name: value, selected: false };
+            items.push(item);
+            renderList();
+            input.value = '';
+        }
+    }
+
+    function toggleItem(index) {
+        items[index].selected = !items[index].selected;
+        renderList();
+    }
+
+    function renderList() {
+        const list = document.getElementById('itemList');
+        list.innerHTML = '';
+        items.forEach((item, index) => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+        <label>
+          <input type="checkbox" ${item.selected ? 'checked' : ''} onchange="toggleItem(${index})">
+          ${item.name}
+        </label>
+      `;
+            list.appendChild(li);
+        });
+
+        // Atualiza o campo oculto com os itens selecionados
+        const selected = items.filter(i => i.selected).map(i => i.name);
+        document.getElementById('selectedItems').value = JSON.stringify(selected);
+    }
+</script>
+
+
+
+
+{% endblock %}

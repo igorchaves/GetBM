@@ -1,0 +1,13 @@
+/* ============================
+   IMPORTAÇÃO DE ESTILOS
+   Este arquivo centraliza todos os estilos do projeto
+============================ */
+
+@import url('base.css');     /* Estilos globais: body, inputs, botões */
+@import url('layout.css');   /* Estrutura geral: #main, .content, etc. */
+@import url('menu.css');     /* Menu lateral: .sidebar, .closebtn, etc. */
+@import url('form.css');     /* Formulários: .form-card, .form-group, etc. */
+@import url('table.css');    /* Tabelas: .table-card, table, th, td, etc. */
+@import url('modal.css');    /* Modais: .modal, .modal-content, etc. */
+@import url('welcome.css');   /* welcome: tela de boas vindas etc. */
+

@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}Gestão de Backlog{% endblock %}
+
+{% block content %}
+<div class="content">
+<div class="top-bar">
+    <h2>Gestão Backlog</h2>
+    <button type="button" class="btn-primary top-bar-btn" onclick="console.log('Botão clicado')">
+        <i class="fas fa-plus"></i> Nova User Story
+    </button>
+</div>
+
+    <div class="form-card">
+    <h3 class="section-form-title">Consulta Backlog</h3>
+    <form method="GET" action="/" class="form-grid">
+        <div class="form-group">
+            <label for="userStory">User Story</label>
+            <input type="text" id="userStory" name="userStory">
+        </div>
+        <div class="form-group">
+            <label for="funcionalidade">Funcionalidade</label>
+            <input type="text" id="funcionalidade" name="funcionalidade">
+        </div>
+        <div class="form-group">
+            <label for="categoria">Categoria</label>
+            <input type="text" id="categoria" name="categoria">
+        </div>
+        <div class="form-group">
+            <label for="status">Status</label>
+            <input type="text" id="status" name="status">
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-search"></i> Consultar
+            </button>
+            <button type="reset" class="btn btn-secondary">
+                <i class="fas fa-times"></i> Limpar
+            </button>
+        </div>
+    </form>
+</div>
+
+    
+    <div class="table-card">
+        <h3 class="section-form-title">Resultado da consulta Backlog</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Backlog</th>
+                    <th>User Story</th>
+                    <th>Seguimento/Jornada</th>
+                    <th>Descrição</th>
+                    <th>Funcionalidade</th>
+                    <th>Link Funcionalidade</th>
+                    <th>Categoria</th>
+                    <th>Sprint</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in resultados %}
+                <tr>
+                    <td>{{ item.backlog }}</td>
+                    <td>{{ item.user_story }}</td>
+                    <td>{{ item.jornada }}</td>
+                    <td>{{ item.descricao }}</td>
+                    <td>{{ item.funcionalidade }}</td>
+                    <td>{{ item.link_funcionalidade }}</td>
+                    <td>{{ item.categoria }}</td>
+                    <td>{{ item.sprint }}</td>
+                    <td>{{ item.status }}</td>
+                    <td>
+                        <a href="#"><i class="fas fa-edit"></i> Editar</a> |
+                        <a href="#"><i class="fas fa-trash-alt"></i> Excluir</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

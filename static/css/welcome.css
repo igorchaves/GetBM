@@ -1,0 +1,103 @@
+.welcome-container {
+  padding: 20px; /* Reduzido de 40px */
+  text-align: center;
+}
+
+.welcome-message {
+  font-size: 16px; /* Reduzido de 18px */
+  margin-bottom: 20px; /* Reduzido de 30px */
+  color: #555;
+}
+
+/* Container principal centralizado */
+.cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px; /* Reduzido de 20px */
+}
+
+/* Título fora do container azul */
+.section-title {
+  margin-bottom: 0;
+  color: #007bff;
+  text-align: left;
+  width: 100%;
+  max-width: 800px;
+  font-size: 20px; /* Leve redução */
+}
+
+/* Container Cadastro Base */
+.card-section {
+  background-color: #f0f8ff;
+  border: 1px solid #007bff;
+  border-radius: 8px;
+  padding: 16px; /* Reduzido de 20px */
+  width: fit-content;
+  box-sizing: border-box;
+}
+
+/* Grid de cards */
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; /* Reduzido de 20px */
+  justify-content: center;
+}
+
+/* Container do card Backlog */
+.backlog-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; /* Reduzido de 20px */
+  justify-content: center;
+}
+
+/* Estilo dos cards */
+.card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px; /* Reduzido de 16px */
+  width: 200px; /* Reduzido de 220px */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+  text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  margin: 8px 0; /* Reduzido de 10px */
+  font-size: 16px;
+  color: #333;
+}
+
+.card p {
+  font-size: 13px; /* Reduzido de 14px */
+  color: #666;
+  margin-bottom: 12px; /* Reduzido de 15px */
+}
+
+.card-link {
+  display: inline-block;
+  padding: 6px 12px; /* Reduzido de 8px 16px */
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.card-link:hover {
+  background-color: #0056b3;
+}
+
+.card-icon {
+  font-size: 24px; /* Reduzido de 28px */
+  color: #007bff;
+  margin-bottom: 8px; /* Reduzido de 10px */
+}
