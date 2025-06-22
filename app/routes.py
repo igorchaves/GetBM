@@ -18,4 +18,3 @@ def funcionalidades():
 @app.route('/projeto')
 def projeto():
     return render_template('projeto.html')
-
