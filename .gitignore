@@ -1,6 +1,10 @@
 # Ambiente virtual
 venv/
 env/
+Lib/
+Include/
+Scripts/
+pyvenv.cfg
 
 # Cache do Python
 __pycache__/
