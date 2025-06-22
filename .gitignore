@@ -22,3 +22,22 @@ Thumbs.db
 # Arquivos de texto temporários (opcional)
 # *.txt
 # !teste.txt
+
+# VS Code / Visual Studio
+.vs/
+*.user
+*.suo
+*.sqlite
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.log
+
+# Temporários
+tmp/
+.localdev/
+*.rcSW
