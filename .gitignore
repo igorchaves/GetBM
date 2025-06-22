@@ -6,11 +6,14 @@ env/
 __pycache__/
 *.py[cod]
 *.pyo
+*.pyd
+*.egg-info/
 
-# Arquivos temporários
+# Arquivos temporários e de log
 *.log
 *.tmp
 *.swp
+*.bak
 
 # Configurações do VS Code
 .vscode/
@@ -19,25 +22,17 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# Arquivos de texto temporários (opcional)
-# *.txt
-# !teste.txt
-
-# VS Code / Visual Studio
+# Visual Studio / VS Code
 .vs/
 *.user
 *.suo
+*.vcxproj.*
+*.pyproj.user
 *.sqlite
 
-# Python
-__pycache__/
-*.py[cod]
-*.pyo
-*.pyd
-*.egg-info/
-*.log
-
-# Temporários
+# Diretórios e arquivos locais
 tmp/
 .localdev/
-*.rcSW
+
+# Arquivos de configuração temporários
+*.rc
