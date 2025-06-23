@@ -26,3 +26,8 @@ def categoria():
 @app.route('/status')
 def status():
     return render_template('status.html')
+
+@app.route('/sprint')
+def sprint():
+    return render_template('sprint.html')
+
