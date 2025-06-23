@@ -1,28 +1,31 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const modal = document.getElementById("modalUserStory");
-  const openBtn = document.querySelector(".add-btn");
-  const closeBtn = modal?.querySelector(".close");
-  const cancelBtn = document.getElementById("cancelarModal");
+  const openButtons = document.querySelectorAll("[data-modal-target]");
+  const closeButtons = document.querySelectorAll(".modal .close, .modal .btn-secondary");
 
-  if (!modal || !openBtn || !closeBtn || !cancelBtn) {
-    console.warn("Algum elemento do modal não foi encontrado.");
-    return;
-  }
-
-  openBtn.addEventListener("click", () => {
-    console.log("Botão clicado - abrindo modal");
-    modal.style.display = "block";
+  openButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const modalId = btn.getAttribute("data-modal-target");
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.style.display = "block";
+      } else {
+        console.warn(`Modal com ID "${modalId}" não encontrado.`);
+      }
+    });
   });
 
-  closeBtn.addEventListener("click", () => {
-    modal.style.display = "none";
-  });
-
-  cancelBtn.addEventListener("click", () => {
-    modal.style.display = "none";
+  closeButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const modal = btn.closest(".modal");
+      if (modal) {
+        modal.style.display = "none";
+      }
+    });
   });
 
   window.addEventListener("click", (event) => {
-    });
+    if (event.target.classList.contains("modal")) {
+      event.target.style.display = "none";
+    }
+  });
 });
-

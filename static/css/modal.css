@@ -93,3 +93,31 @@
   gap: 10px;
   margin-top: 20px;
 }
+
+.modal-btn-salvar {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 30px;
+}
+
+.modal-btn-salvar:hover {
+  background-color: #0069d9;
+}
+
+.modal-btn-cancelar {
+  background-color: #f8f9fa;
+  color: #000;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 30px;
+}
+
+.modal-btn-cancelar:hover {
+  background-color: #e2e6ea;
+}

@@ -13,9 +13,12 @@
     {% include 'partials/menu.html' %}
 
     <div id="main">{% block content %}{% endblock %}</div>
+   
+
 
     <!-- Modal fora do #main -->
     {% include 'partials/modal_user_story.html' %}
+    {% include 'partials/modal_add_user.html' %}
 
     <!-- Scripts padrão -->
     <!--<script src="{{ url_for('static', filename='js/menu.js') }}"></script>-->

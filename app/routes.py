@@ -31,3 +31,6 @@ def status():
 def sprint():
     return render_template('sprint.html')
 
+@app.route('/usuario')
+def usuario():
+    return render_template('usuario.html')
