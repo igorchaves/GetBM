@@ -93,3 +93,23 @@
   min-width: 300px;
 }
 
+/* ============================
+   BOTÃO INLINE NO FORMULÁRIO
+============================ */
+
+.form-group-inline-btn .input-with-button {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.input-with-button input {
+    flex: 1;
+}
+
+.btn-inline {
+    white-space: nowrap;
+    padding: 8px 12px;
+    font-size: 12px;
+    height: 36px;
+}

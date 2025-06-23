@@ -26,59 +26,59 @@
         </form>
     </div>
 
-<div class="listas">
-  <div class="form-card">
-    <h3 class="section-form-title">Adicionar Backlog</h3>
-    <div class="form-group">
-      <label for="backlogInput">Backlog</label>
-      <input type="text" id="backlogInput" placeholder="Digite e pressione Enter">
-      <ul id="backlogLista" class="tag-list"></ul>
+    <div class="listas">
+        <div class="form-card">
+            <h3 class="section-form-title">Adicionar Backlog</h3>
+            <div class="form-group">
+                <label for="backlogInput">Backlog</label>
+                <input type="text" id="backlogInput" placeholder="Digite e pressione Enter">
+                <ul id="backlogLista" class="tag-list"></ul>
+            </div>
+        </div>
+
+        <div class="form-card">
+            <h3 class="section-form-title">Adicionar Seguimento</h3>
+            <div class="form-group">
+                <label for="jornadaInput">Seguimento (Jornada)</label>
+                <input type="text" id="jornadaInput" placeholder="Digite e pressione Enter">
+                <ul id="jornadaLista" class="tag-list"></ul>
+            </div>
+        </div>
     </div>
-  </div>
-
-  <div class="form-card">
-    <h3 class="section-form-title">Adicionar Seguimento</h3>
-    <div class="form-group">
-      <label for="jornadaInput">Seguimento (Jornada)</label>
-      <input type="text" id="jornadaInput" placeholder="Digite e pressione Enter">
-      <ul id="jornadaLista" class="tag-list"></ul>
-    </div>
-  </div>
-</div>
-
-
     <div class="form-actions">
+        <button type="reset" class="btn btn-secondary">
+            <i class="fas fa-times"></i> Limpar</button>
         <button type="submit" class="btn btn-primary">Cadastrar Projeto</button>
+
     </div>
 </div>
-
 <script>
-  function setupTagInput(inputId, listId, inputName) {
-    const input = document.getElementById(inputId);
-    const list = document.getElementById(listId);
+    function setupTagInput(inputId, listId, inputName) {
+        const input = document.getElementById(inputId);
+        const list = document.getElementById(listId);
 
-    input.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' && input.value.trim() !== '') {
-        e.preventDefault();
-        const valor = input.value.trim();
+        input.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' && input.value.trim() !== '') {
+                e.preventDefault();
+                const valor = input.value.trim();
 
-        const li = document.createElement('li');
-        li.className = 'tag-item';
-        li.innerHTML = `
+                const li = document.createElement('li');
+                li.className = 'tag-item';
+                li.innerHTML = `
           <span>${valor}</span>
           <button type="button" class="remove-btn" onclick="this.parentElement.remove()">×</button>
           <input type="hidden" name="${inputName}" value="${valor}">
         `;
-        list.appendChild(li);
-        input.value = '';
-      }
-    });
-  }
+                list.appendChild(li);
+                input.value = '';
+            }
+        });
+    }
 
-  document.addEventListener("DOMContentLoaded", function () {
-    setupTagInput('jornadaInput', 'jornadaLista', 'jornadas[]');
-    setupTagInput('backlogInput', 'backlogLista', 'backlogs[]');
-  });
+    document.addEventListener("DOMContentLoaded", function () {
+        setupTagInput('jornadaInput', 'jornadaLista', 'jornadas[]');
+        setupTagInput('backlogInput', 'backlogLista', 'backlogs[]');
+    });
 </script>
 
 

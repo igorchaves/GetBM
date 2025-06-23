@@ -18,3 +18,7 @@ def funcionalidades():
 @app.route('/projeto')
 def projeto():
     return render_template('projeto.html')
+
+@app.route('/categoria')
+def categoria():
+    return render_template('categoria.html')
