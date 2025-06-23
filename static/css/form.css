@@ -99,17 +99,24 @@
 
 .form-group-inline-btn .input-with-button {
     display: flex;
-    align-items: flex-end;
+    align-items: flex-end; /* Alinha pela base dos elementos */
     gap: 10px;
 }
 
 .input-with-button input {
     flex: 1;
+    height: 38px; /* Ajuste fino para igualar à altura visual dos botões */
+    box-sizing: border-box;
 }
 
 .btn-inline {
     white-space: nowrap;
     padding: 8px 12px;
     font-size: 12px;
-    height: 36px;
+    height: 38px; /* Igual ao input */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
 }
+

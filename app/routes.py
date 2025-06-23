@@ -22,3 +22,7 @@ def projeto():
 @app.route('/categoria')
 def categoria():
     return render_template('categoria.html')
+
+@app.route('/status')
+def status():
+    return render_template('status.html')

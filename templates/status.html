@@ -1,23 +1,23 @@
 {% extends 'base.html' %}
 
-{% block title %}Cadastro de Categoria Backlog{% endblock %}
+{% block title %}Cadastro de Status{% endblock %}
 
 {% block content %}
 <div class="content">
     <div class="top-bar">
-        <h2>Cadastro de Categoria Backlog</h2>
+        <h2>Cadastro de Status</h2>
     </div>
 
     <div class="form-card">
-        <h3 class="section-form-title">Adicionar nova categoria Backlog</h3>
-        <form method="POST" action="/cadastrar-categoria" class="form-grid form-grid-inline-btn">
+        <h3 class="section-form-title">Adicionar novo Status</h3>
+        <form method="POST" action="/cadastrar-status" class="form-grid form-grid-inline-btn">
             <div class="form-group">
-                <label for="codigoCategoria">Código Categoria*</label>
-                <input type="text" id="codigoCategoria" name="codigoCategoria" required>
+                <label for="codigoStatus">Cod Status*</label>
+                <input type="text" id="codigoStatus" name="codigogStatus" required>
             </div>
             <div class="form-group">
-                <label for="nomeCategoria">Nome da Categoria*</label>
-                <input type="text" id="nomeCategoria" name="nomeCategoria" required>
+                <label for="nomeStatus">Nome do Status*</label>
+                <input type="text" id="nomeStatus" name="nomeStatus" required>
             </div>
             <div class="form-group form-group-inline-btn">
                 <label>&nbsp;</label> <!-- espaço reservado para manter alinhamento -->
@@ -31,24 +31,22 @@
                 </div>
             </div>
         </form>
-
     </div>
-
     <div class="table-card">
-        <h3 class="section-form-title">Categorias Cadastradas</h3>
+        <h3 class="section-form-title">Status Cadastrados</h3>
         <table>
             <thead>
                 <tr>
-                    <th>Cod Categoria</th>
-                    <th>Nome da Categoria</th>
+                    <th>Cod Status</th>
+                    <th>Nome do Status</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-                {% for categoria in categorias %}
+                {% for status in status_list %}
                 <tr>
-                    <td>{{ categoria.codigo }}</td>
-                    <td>{{ categoria.nome }}</td>
+                    <td>{{ status.codigo }}</td>
+                    <td>{{ status.nome }}</td>
                     <td>
                         <a href="#"><i class="fas fa-edit"></i> Editar</a> |
                         <a href="#"><i class="fas fa-trash-alt"></i> Excluir</a>
