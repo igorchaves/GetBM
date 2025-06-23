@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Sistema{% endblock %}</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/modal.css') }}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    </head>
 
-    <body>
-        {% include 'partials/menu.html' %}
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Sistema{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/modal.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
 
-        <div id="main">
-            {% block content %}{% endblock %}
-        </div>
+<body>
+    {% include 'partials/menu.html' %}
 
-        <!-- Modal fora do #main -->
-        {% include 'partials/modal_user_story.html' %}
+    <div id="main">{% block content %}{% endblock %}</div>
 
+    <!-- Modal fora do #main -->
+    {% include 'partials/modal_user_story.html' %}
 
-        <!--<script src="{{ url_for('static', filename='js/menu.js') }}"></script>-->
-        <script src="{{ url_for('static', filename='js/modal.js') }}"></script>
-    </body>
+    <!-- Scripts padrão -->
+    <!--<script src="{{ url_for('static', filename='js/menu.js') }}"></script>-->
+    <script src="{{ url_for('static', filename='js/modal.js') }}"></script>
+
+    <!-- Bloco opcional para scripts adicionais -->
+
+    {% block scripts %}{% endblock %}
+</body>
+
 </html>

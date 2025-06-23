@@ -48,3 +48,48 @@
     margin-bottom: 15px;
 }
 
+/* ============================
+   FORMULÁRIOS (listas) 
+============================ */
+
+.tag-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag-item {
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
+
+.tag-item span {
+  margin-right: 8px;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.listas {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.listas .form-card {
+  flex: 1 1 48%;
+  min-width: 300px;
+}
+
