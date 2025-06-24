@@ -1,6 +1,6 @@
 # 📊 Gestão Backlog (GetBM)
 
-GetBM é uma aplicação web para automatizar a criação e visualização de organogramas de backlog de projetos. Com uma interface moderna e interativa, permite o cadastro estruturado de projetos, funcionalidades e especificações, gerando visualizações dinâmicas e exportáveis.
+O GetBM é um sistema desenvolvido para automatizar a criação e atualização de organogramas de backlog de projetos. Ele visa eliminar processos manuais suscetíveis a erros, oferecendo uma visualização moderna, interativa e de fácil manutenção baseada em cadastros estruturados.
 
 # 🚀 Tecnologias Utilizadas
 
