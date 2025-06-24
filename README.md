@@ -1,22 +1,54 @@
-📊 Gestão Backlog
-Automatize a criação e visualização de organogramas de backlog com uma interface web moderna e interativa.
+📊 Gestão Backlog (GetBM)
+GetBM é uma aplicação web para automatizar a criação e visualização de organogramas de backlog de projetos. Com uma interface moderna e interativa, permite o cadastro estruturado de projetos, funcionalidades e especificações, gerando visualizações dinâmicas e exportáveis.
 
-🚀 Tecnologias
-Python (Flask)
-Pyvis (visualização de organogramas)
-PostgreSQL / SQLite / MongoDB (armazenamento de dados)
+🚀 Tecnologias Utilizadas
+Python (Flask ou Django)
+Pyvis – Visualização de organogramas interativos
+PostgreSQL / SQLite / MongoDB – Armazenamento de dados
+HTML/CSS/JS – Interface web
 
 🔧 Funcionalidades
-Cadastro de projetos, funcionalidades e especificações
-Geração automática de organogramas interativos
-Filtros por status e exportação para PDF/imagem
+Cadastro de:
+Projetos
+Funcionalidades
+Especificações
+Geração automática de organogramas com:
+Subníveis ilimitados
+Zoom, arraste e tooltips
+Filtros por status (implementado, homologado etc.)
+Exportação para PDF ou imagem
 
-🛠️ Etapas
+🛠️ Etapas de Desenvolvimento
 Levantamento de requisitos
-Backend + banco de dados
-Interface web
+Implementação do backend
+Criação da interface web
 Integração com Pyvis
-Testes e implantação
+Testes e validação
+Implantação
 
-✅ Recomendação
-Uso do Pyvis pela simplicidade, interatividade e visual moderno.
+📦 Instalação e Execução
+Pré-requisitos
+Python 3.10+
+pip
+(opcional) Ambiente virtual
+
+Passos
+# Clone o repositório
+git clone https://github.com/seu-usuario/getbm.git
+cd getbm
+
+# Crie e ative um ambiente virtual (opcional)
+python -m venv venv
+source venv/bin/activate  # Linux/macOS
+venv\Scripts\activate     # Windows
+
+# Instale as dependências
+pip install -r requirements.txt
+
+# Execute a aplicação
+python run.py
+
+
+✅ Recomendação Técnica
+O uso do Pyvis é recomendado por seu equilíbrio entre simplicidade, interatividade e visual moderno, ideal para representar estruturas hierárquicas como backlogs.
+
