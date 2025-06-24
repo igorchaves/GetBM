@@ -7,9 +7,9 @@
     <a href="#" class="has-submenu"><i class="fas fa-sliders-h"></i> <span class="menu-text">Parametrização</span></a>
     <div class="submenu">
       <a href="{{ url_for('app.funcionalidades') }}">Funcionalidade</a>
-      <a href="#">Status</a>
-      <a href="#">Categoria</a>
-      <a href="#">Sprint</a>
+      <a href="{{ url_for('app.status') }}">Status</a>
+      <a href="{{ url_for('app.categoria') }}">Categoria</a>
+      <a href="{{ url_for('app.sprint') }}">Sprint</a>
     </div>
   </div>
 
@@ -17,7 +17,7 @@
     <a href="#" class="has-submenu"><i class="fas fa-cogs"></i> <span class="menu-text">Configurações</span></a>
     <div class="submenu">
       <a href="{{ url_for('app.projeto') }}">Projeto</a>
-      <a href="#">Usuários</a>
+      <a href="{{ url_for('app.usuario') }}">Usuários</a>
     </div>
   </div>
 </div>

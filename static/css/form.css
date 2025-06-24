@@ -48,3 +48,83 @@
     margin-bottom: 15px;
 }
 
+/* ============================
+   FORMULÁRIOS (listas) 
+============================ */
+
+.tag-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag-item {
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
+
+.tag-item span {
+  margin-right: 8px;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.listas {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.listas .form-card {
+  flex: 1 1 48%;
+  min-width: 300px;
+}
+
+/* ============================
+   BOTÃO INLINE NO FORMULÁRIO
+============================ */
+
+.form-group-inline-btn .input-with-button {
+    display: flex;
+    align-items: flex-end; /* Alinha pela base dos elementos */
+    gap: 10px;
+}
+
+.input-with-button input {
+    flex: 1;
+    height: 38px; /* Ajuste fino para igualar à altura visual dos botões */
+    box-sizing: border-box;
+}
+
+.btn-inline {
+  white-space: nowrap;
+  padding: 4px 10px;         /* Reduz o preenchimento interno */
+  font-size: 12px;
+  height: 30px;              /* Altura menor que os 38px anteriores */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 100px;
+  max-width: 120px;
+  vertical-align: middle;    /* Alinha com o campo de entrada */
+}
+
+.btn-inline i {
+  margin-right: 6px; /* ou 8px para mais espaço */
+}
+
+

@@ -93,3 +93,136 @@
   gap: 10px;
   margin-top: 20px;
 }
+
+.modal-btn-salvar {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 30px;
+}
+
+.modal-btn-salvar:hover {
+  background-color: #0069d9;
+}
+
+.modal-btn-cancelar {
+  background-color: #f8f9fa;
+  color: #000;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 30px;
+}
+
+.modal-btn-cancelar:hover {
+  background-color: #e2e6ea;
+}
+
+/* ============================
+   Abas Modal
+============================ */
+.modal-tabs {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #f1f1f1;
+  border: none;
+  border-bottom: 2px solid transparent;
+}
+
+.tab-button.active {
+  border-bottom: 2px solid #007bff;
+  background-color: #fff;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* ============================
+   Grupos de Acesso
+============================ */
+.perfil-container {
+  display: flex;
+  gap: 40px;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+}
+
+.perfil-informacoes .form-group {
+  margin-bottom: 10px;
+}
+
+.perfil-informacoes,
+.perfil-acesso {
+  flex: 1;
+  min-width: 300px;
+}
+
+.grupo-acesso-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.grupo-acesso-item input[type="radio"] {
+  justify-self: start;
+}
+
+.grupo-acesso-item input[type="text"] {
+  padding: 6px 10px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.grupo-acesso-actions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-remover {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #dc3545;
+}
+
+.btn-adicionar {
+  scrollbar-width: auto;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.icon-spacing {
+    margin-right: 5px !important;
+}
+
+.btn-remover i {
+    color: #dc3545;
+    font-size: 18px;
+}
+
+

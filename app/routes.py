@@ -18,3 +18,19 @@ def funcionalidades():
 @app.route('/projeto')
 def projeto():
     return render_template('projeto.html')
+
+@app.route('/categoria')
+def categoria():
+    return render_template('categoria.html')
+
+@app.route('/status')
+def status():
+    return render_template('status.html')
+
+@app.route('/sprint')
+def sprint():
+    return render_template('sprint.html')
+
+@app.route('/usuario')
+def usuario():
+    return render_template('usuario.html')
