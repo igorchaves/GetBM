@@ -9,25 +9,35 @@ Pyvis – Visualização de organogramas interativos
 PostgreSQL / SQLite / MongoDB – Armazenamento de dados
 HTML/CSS/JS – Interface web
 
-# 🔧 Funcionalidades Cadastro de:
+# 🔧 Cadastro de:
 
-Projetos
-Funcionalidades
-Especificações
+- Funcionalidades
+- Status
+- Categorias 
+- Sprint
+
+Gerenciamento (Configurações): 
+- Projetos
+- Usuário
+
+Funcionalidades Centrais da aplicação: 
+- Backlog
+- Organograma
+
 Geração automática de organogramas com:
-Subníveis ilimitados
-Zoom, arraste e tooltips
-Filtros por status (implementado, homologado etc.)
-Exportação para PDF ou imagem
+- Subníveis ilimitados
+- Zoom, arraste e tooltips
+- Filtros por status (implementado, homologado etc.)
+- Exportação para PDF ou imagem
 
 # 🛠️ Etapas de Desenvolvimento
 
-Levantamento de requisitos <- Concluida 
-Implementação do backend
-Criação da interface web <- Fase atual
-Integração com Pyvis
-Testes e validação
-Implantação
+- ✅ Levantamento de requisitos
+- 🔜 Implementação do backend
+- 🚧 Criação da interface web <- Fase atual
+- 🔜 Integração com Pyvis (Organograma)
+- 🔜 Testes e validação
+- 🔜 Implantação
 
 # 📦 Instalação e Execução
 
