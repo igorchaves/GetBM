@@ -9,8 +9,8 @@
         <button type="button" class="btn-primary top-bar-btn" data-modal-target="modalUsuario">
             <i class="fas fa-plus"></i> Criar Usuário
         </button>
-
     </div>
+
     <div class="table-card">
         <h3 class="section-form-title">Usuarios cadastrados</h3>
         <table>
@@ -22,12 +22,27 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- Registro de exemplo adicionado manualmente -->
+                <tr>
+                    <td>001</td>
+                    <td>João da Silva</td>
+                    <td>
+                        <a href="#" data-modal-target="modalPerfil">
+                            <i class="fas fa-edit"></i> Editar
+                        </a> |
+                        <a href="#"><i class="fas fa-trash-alt"></i> Excluir</a>
+                    </td>
+                </tr>
+
+                <!-- Registros dinâmicos do backend -->
                 {% for item in resultados %}
                 <tr>
                     <td>{{ item.codigo_usuario }}</td>
                     <td>{{ item.nome_usuario }}</td>
                     <td>
-                        <a href="#"><i class="fas fa-edit"></i> Editar</a> |
+                        <a href="#" data-modal-target="modalPerfil">
+                            <i class="fas fa-edit"></i> Editar
+                        </a> |
                         <a href="#"><i class="fas fa-trash-alt"></i> Excluir</a>
                     </td>
                 </tr>
