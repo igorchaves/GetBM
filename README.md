@@ -41,21 +41,21 @@ Geração automática de organogramas com:
 
 # 📦 Instalação e Execução
 
-Pré-requisitos
-Python 3.10+
-pip
-(opcional) Ambiente virtual
+Pré-requisitos:
+- Python 3.10+
+- pip
+- (opcional) Ambiente virtual
 
 Passos
 # Clone o repositório
-git clone https://github.com/seu-usuario/getbm.git
-cd getbm
+- git clone https://github.com/seu-usuario/getbm.git
+- cd getbm
 
 # Crie e ative um ambiente virtual (opcional)
 
-python -m venv venv
-source venv/bin/activate  # Linux/macOS
-venv\Scripts\activate     # Windows
+- python -m venv venv
+- source venv/bin/activate  # Linux/macOS
+- venv\Scripts\activate     # Windows
 
 # Instale as dependências
 pip install -r requirements.txt
