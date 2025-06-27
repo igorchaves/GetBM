@@ -34,3 +34,7 @@ def sprint():
 @app.route('/usuario')
 def usuario():
     return render_template('usuario.html')
+
+@app.route('/perfil')
+def perfil():
+    return render_template('perfil.html')

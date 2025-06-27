@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}Perfil do Usuário{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="top-bar">
+        <h2>Gestão do Usuário e Senha</h2>
+    </div>
+
+    <div class="form-card">
+        <div class="perfil-header">
+            <h3 class="section-form-title">Perfil do Usuário</h3>
+        </div>
+
+        <div class="perfil-tabs">
+            <button class="perfil-tab-button active" onclick="abrirAbaPerfil()">Perfil</button>
+            <button class="perfil-tab-button" onclick="abrirAbaSeguranca()">Segurança</button>
+        </div>
+
+        <form id="formPerfilUsuario">
+            <!-- Aba Perfil -->
+            <div id="abaPerfil" class="perfil-tab-content active">
+                <div class="perfil-container">
+                    <!-- Informações do Usuário -->
+                    <div class="perfil-informacoes">
+                        <h3 class="section-form-title">Informações do Usuário</h3>
+                        <div class="form-group">
+                            <label for="nomeCompleto">Nome Completo <span class="required">*</span></label>
+                            <input type="text" id="nomeCompleto" name="nomeCompleto" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="emailUsuario">Email</label>
+                            <input type="email" id="emailUsuario" name="emailUsuario">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefoneUsuario">Telefone</label>
+                            <input type="tel" id="telefoneUsuario" name="telefoneUsuario">
+                        </div>
+                    </div>
+
+                    <!-- Acesso ao Projetos -->
+                    <div class="perfil-acesso">
+                        <h3 class="section-form-title">Acesso ao Projetos</h3>
+                        <div id="gruposAcessoContainer">
+                            <div class="perfil-grupo-acesso-item">
+                                <input type="radio" name="grupoAcessoSelecionado" />
+                                <input type="text" name="grupoAcesso[]" placeholder="Nome do Projeto" class="input-projeto" />
+                                <i class="fas fa-info-circle icon-detalhes" onclick="abrirModalDetalhesProjeto(this)"></i>
+                                <button type="button" class="btn-remover" onclick="removerGrupoAcesso(this)">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Botão Adicionar Projeto alinhado à direita -->
+                        <div class="perfil-grupo-acesso-actions">
+                            <button type="button" id="botao-adicionar-projeto" class="btn-adicionar" onclick="adicionarGrupoAcesso()">
+                                <i class="fas fa-folder-plus icon-spacing"></i> Adicionar Projeto
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aba Segurança -->
+            <div id="abaSeguranca" class="perfil-tab-content">
+                <h3 class="section-form-title">Redefinição de Senha</h3>
+                <p>Configurações de segurança do usuário.</p>
+            </div>
+        </form>
+
+        <!-- Botões fora do form, na parte inferior direita -->
+        <div class="perfil-actions">
+            <button type="button" class="btn btn-secondary" onclick="fecharModalPerfilUsuario()">Cancelar</button>
+            <button type="submit" form="formPerfilUsuario" class="btn btn-primary">Salvar</button>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/acoes_perfil.js') }}"></script>
+{% endblock %}

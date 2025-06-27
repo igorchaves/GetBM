@@ -27,7 +27,7 @@
                     <td>001</td>
                     <td>João da Silva</td>
                     <td>
-                        <a href="#" data-modal-target="modalPerfil">
+                        <a href="{{ url_for('app.perfil') }}">
                             <i class="fas fa-edit"></i> Editar
                         </a> |
                         <a href="#"><i class="fas fa-trash-alt"></i> Excluir</a>
@@ -40,7 +40,7 @@
                     <td>{{ item.codigo_usuario }}</td>
                     <td>{{ item.nome_usuario }}</td>
                     <td>
-                        <a href="#" data-modal-target="modalPerfil">
+                        <a href="#">
                             <i class="fas fa-edit"></i> Editar
                         </a> |
                         <a href="#"><i class="fas fa-trash-alt"></i> Excluir</a>

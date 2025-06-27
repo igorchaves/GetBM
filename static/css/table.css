@@ -1,17 +1,19 @@
-tables.css 
 /* ============================
-   TABELAS
+   TABELAS - CONTAINER
 ============================ */
 .table-card {
     background: #fff;
-    padding: 20px 20px 15px 20px; /* mais espaço acima, menos abaixo */
+    padding: 20px;
     border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
     box-sizing: border-box;
     overflow-x: auto;
 }
 
+/* ============================
+   TABELAS - ESTRUTURA
+============================ */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -19,6 +21,9 @@ table {
     font-size: 12.5px;
 }
 
+/* ============================
+   TABELAS - LINHAS
+============================ */
 table tr:nth-child(even) {
     background-color: #f9f9f9;
 }
@@ -27,6 +32,9 @@ table tr:hover {
     background-color: #f1f1f1;
 }
 
+/* ============================
+   TABELAS - CÉLULAS
+============================ */
 th,
 td {
     border: 1px solid #ccc;
@@ -37,135 +45,4 @@ td {
 
 th {
     background-color: #f2f2f2;
-}
-
-------------------------------------
-forms.css 
-/* ============================
-   FORMULÁRIOS
-============================ */
-.form-card {
-    background: #fff;
-    padding: 20px 20px 15px 20px; /* mais espaço acima, menos abaixo */
-    border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
-    box-sizing: border-box;
-}
-
-.form-card form {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.form-card .form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-card label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    font-size: 12px;
-}
-
-.form-card input {
-    padding: 8px;
-    font-size: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
-}
-
-.form-actions {
-    grid-column: 1 / -1;
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.add-btn {
-    float: right;
-    margin-bottom: 15px;
-}
-
-/* ============================
-   FORMULÁRIOS (listas) 
-============================ */
-
-.tag-list {
-  list-style: none;
-  padding: 0;
-  margin-top: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.tag-item {
-  background-color: #f0f0f0;
-  border-radius: 4px;
-  padding: 6px 10px;
-  display: flex;
-  align-items: center;
-  font-size: 12px;
-}
-
-.tag-item span {
-  margin-right: 8px;
-}
-
-.remove-btn {
-  background: none;
-  border: none;
-  color: #888;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.listas {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.listas .form-card {
-  flex: 1 1 48%;
-  min-width: 300px;
-}
-
-/* ============================
-   BOTÃO INLINE NO FORMULÁRIO
-============================ */
-
-.form-group-inline-btn .input-with-button {
-    display: flex;
-    align-items: flex-end; /* Alinha pela base dos elementos */
-    gap: 10px;
-}
-
-.input-with-button input {
-    flex: 1;
-    height: 38px; /* Ajuste fino para igualar à altura visual dos botões */
-    box-sizing: border-box;
-}
-
-.btn-inline {
-  white-space: nowrap;
-  padding: 4px 10px;         /* Reduz o preenchimento interno */
-  font-size: 12px;
-  height: 30px;              /* Altura menor que os 38px anteriores */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  min-width: 100px;
-  max-width: 120px;
-  vertical-align: middle;    /* Alinha com o campo de entrada */
-}
-
-.btn-inline i {
-  margin-right: 6px; /* ou 8px para mais espaço */
 }
