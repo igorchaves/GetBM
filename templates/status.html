@@ -1,4 +1,11 @@
 {% extends 'base.html' %}
+{% block breadcrumb %}
+<ul class="breadcrumb">
+    <li><a href="/"><i class="fas fa-home"></i></a></li>
+    <li>Parametrização</li>
+    <li>Status</li>
+</ul>
+{% endblock %}
 
 {% block title %}Cadastro de Status{% endblock %}
 
@@ -10,36 +17,34 @@
 
     <div class="form-card">
         <h3 class="section-form-title">Adicionar novo Status</h3>
-        <form method="POST" action="/cadastrar-status" class="form-grid form-grid-inline-btn">
+        <form method="POST" action="/cadastrar-status" class="form-grid">
             <div class="form-group">
-                <label for="codigoStatus">Cod Status*</label>
+                <label for="codigoStatus">Código Status*</label>
                 <input type="text" id="codigoStatus" name="codigogStatus" required>
             </div>
             <div class="form-group">
                 <label for="nomeStatus">Nome do Status*</label>
                 <input type="text" id="nomeStatus" name="nomeStatus" required>
             </div>
-            <div class="form-group form-group-inline-btn">
-                <label>&nbsp;</label> <!-- espaço reservado para manter alinhamento -->
-                <div class="input-with-button">
-                    <button type="reset" class="btn btn-secondary btn-inline">
-                        <i class="fas fa-times"></i> Limpar
-                    </button>
-                    <button type="submit" class="btn btn-primary btn-inline">
-                        <i class="fas fa-plus"></i> Adicionar
-                    </button>
-                </div>
+            <div class="form-actions">
+                <button type="reset" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Limpar
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Adicionar
+                </button>
             </div>
         </form>
     </div>
+
     <div class="table-card">
         <h3 class="section-form-title">Status Cadastrados</h3>
         <table>
             <thead>
                 <tr>
-                    <th>Cod Status</th>
-                    <th>Nome do Status</th>
-                    <th>Ações</th>
+                    <th style="width: 10%;">Código Status</th>
+                    <th style="width: 85%;">Nome do Status</th>
+                    <th style="width: 5%;">Ações</th>
                 </tr>
             </thead>
             <tbody>

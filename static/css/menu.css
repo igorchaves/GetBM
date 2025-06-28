@@ -1,16 +1,16 @@
 /* ============================
    MENU LATERAL
 ============================ */
+
 .sidebar {
-  height: 100%;
+  position: relative;
+  height: 100vh;
   width: 50px;
-  position: fixed;
-  top: 0;
-  left: 0;
   background-color: #111;
   overflow-x: hidden;
-  transition: width 0.3s;
+  transition: width 0.3s ease;
   padding-top: 0;
+  flex-shrink: 0;
 }
 
 .sidebar:hover,
@@ -19,21 +19,23 @@
 }
 
 .sidebar > a:first-of-type {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
-
-.sidebar a {
+.sidebar a,
+.menu-usuario a.has-submenu {
   display: flex;
   align-items: center;
   padding: 10px 15px;
   color: white;
   text-decoration: none;
   font-size: 12px;
+  width: 100%;
   transition: 0.3s;
 }
 
-.sidebar a i {
+.sidebar a i,
+.menu-usuario a.has-submenu i {
   margin-right: 10px;
   min-width: 20px;
   text-align: center;
@@ -56,17 +58,14 @@
   flex-direction: column;
 }
 
-/* Submenu visível apenas quando o menu está expandido */
-.sidebar:hover .menu-group:hover .submenu,
-.sidebar:focus-within .menu-group:hover .submenu {
-  display: flex;
-}
-
+/* Submenus padrão */
 .submenu {
   display: none;
   flex-direction: column;
   background-color: #222;
   padding-left: 30px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .submenu a {
@@ -81,4 +80,28 @@
 .submenu a:hover {
   background-color: #333;
   color: #fff;
+}
+
+/* Submenu visível apenas quando o menu está expandido */
+.sidebar:hover .menu-group:hover .submenu,
+.sidebar:focus-within .menu-group:hover .submenu {
+  display: flex;
+}
+
+/* ============================
+   MENU USUÁRIO (Perfil e Sair)
+============================ */
+
+.menu-usuario {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Submenu do usuário visível ao passar o mouse */
+.menu-usuario:hover .submenu {
+  display: flex;
 }

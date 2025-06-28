@@ -1,4 +1,11 @@
 {% extends 'base.html' %}
+{% block breadcrumb %}
+<ul class="breadcrumb">
+    <li><a href="/"><i class="fas fa-home"></i></a></li>
+    <li>Configuração</li>
+    <li>Usuário</li>
+</ul>
+{% endblock %}
 
 {% block title %}Gestão de Usuarios{% endblock %}
 
@@ -17,20 +24,25 @@
             <thead>
                 <tr>
                     <th style="width: 10%;">Código Usuario</th>
-                    <th style="width: 80%;">Nome Usuario</th>
-                    <th style="width: 10%;">Ações</th>
+                    <th style="width: 85%;">Nome Usuario</th>
+                    <th style="width: 5%;">Ações</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Registro de exemplo adicionado manualmente -->
+                <!-- Registro de exemplo com dropdown -->
                 <tr>
                     <td>001</td>
                     <td>João da Silva</td>
                     <td>
-                        <a href="#" data-modal-target="modalPerfil">
-                            <i class="fas fa-edit"></i> Editar
-                        </a> |
-                        <a href="#"><i class="fas fa-trash-alt"></i> Excluir</a>
+                        <div class="dropdown">
+                            <button class="dropdown-toggle">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a href="{{ url_for('app.perfil') }}"><i class="fas fa-edit"></i> Editar</a>
+                                <a href="#"><i class="fas fa-trash-alt"></i> Excluir</a>
+                            </div>
+                        </div>
                     </td>
                 </tr>
 
@@ -40,10 +52,15 @@
                     <td>{{ item.codigo_usuario }}</td>
                     <td>{{ item.nome_usuario }}</td>
                     <td>
-                        <a href="#" data-modal-target="modalPerfil">
-                            <i class="fas fa-edit"></i> Editar
-                        </a> |
-                        <a href="#"><i class="fas fa-trash-alt"></i> Excluir</a>
+                        <div class="dropdown">
+                            <button class="dropdown-toggle">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a href="{{ url_for('app.perfil') }}"><i class="fas fa-edit"></i> Editar</a>
+                                <a href="#"><i class="fas fa-trash-alt"></i> Excluir</a>
+                            </div>
+                        </div>
                     </td>
                 </tr>
                 {% endfor %}
@@ -51,4 +68,6 @@
         </table>
     </div>
 </div>
+
+<script src="{{ url_for('static', filename='js/acoes_tabela.js') }}"></script>
 {% endblock %}

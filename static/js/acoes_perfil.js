@@ -15,10 +15,12 @@ function abrirAbaSeguranca() {
 function adicionarGrupoAcesso() {
     const container = document.getElementById('gruposAcessoContainer');
     const novoGrupo = document.createElement('div');
-    novoGrupo.className = 'grupo-acesso-item';
+    novoGrupo.className = 'perfil-grupo-acesso-item';
+
     novoGrupo.innerHTML = `
-        <input type="radio" name="grupoAcessoSelecionado">
-        <input type="text" name="grupoAcesso[]" placeholder="Grupo de Acesso">
+        <input type="radio" name="grupoAcessoSelecionado" />
+        <input type="text" name="grupoAcesso[]" placeholder="Grupo de Acesso" class="input-projeto" />
+        <i class="fas fa-info-circle icon-detalhes" onclick="abrirModalDetalhesProjeto(this)"></i>
         <button type="button" class="btn-remover" onclick="removerGrupoAcesso(this)">
             <i class="fas fa-trash-alt"></i>
         </button>
@@ -27,6 +29,22 @@ function adicionarGrupoAcesso() {
 }
 
 function removerGrupoAcesso(botao) {
+    const container = document.getElementById('gruposAcessoContainer');
     const item = botao.parentElement;
+    const itens = container.querySelectorAll('.perfil-grupo-acesso-item');
+    const radioSelecionado = container.querySelector('input[type="radio"]:checked');
+
+    // Impede remover se for o último item
+    if (itens.length <= 1) {
+        alert("Você não pode remover o último grupo de acesso.");
+        return;
+    }
+
+    // Impede remover o item que está selecionado
+    if (item.contains(radioSelecionado)) {
+        alert("Você não pode remover o grupo de acesso selecionado.");
+        return;
+    }
+
     item.remove();
 }
