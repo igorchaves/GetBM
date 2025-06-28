@@ -106,3 +106,47 @@ body, html {
     margin: 0;
     line-height: 1.2;
 }
+
+/* ============================
+   breadcrumbs
+============================ */
+.breadcrumb-container {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    font-size: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 10px 20px;
+    margin: 0 0 10px 0;
+    background-color: #333;
+    border-radius: 4px;
+    font-size: 10px;
+    color: white;
+}
+
+.breadcrumb li {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb li + li::before {
+    content: ">";
+    margin: 0 8px;
+    color: #ccc;
+}
+
+.breadcrumb a {
+    color: white;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}

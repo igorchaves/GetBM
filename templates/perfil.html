@@ -1,4 +1,12 @@
 {% extends 'base.html' %}
+{% block breadcrumb %}
+<ul class="breadcrumb">
+    <li><a href="/"><i class="fas fa-home"></i></a></li>
+    <li>Configuração</li>
+    <li><a href="{{ url_for('app.usuario') }}">Usuário</a></li>
+    <li>Perfil</li>
+</ul>
+{% endblock %}
 
 {% block title %}Perfil do Usuário{% endblock %}
 
@@ -46,7 +54,7 @@
                             <div class="perfil-grupo-acesso-item">
                                 <input type="radio" name="grupoAcessoSelecionado" />
                                 <input type="text" name="grupoAcesso[]" placeholder="Nome do Projeto" class="input-projeto" />
-                                <i class="fas fa-info-circle icon-detalhes" onclick="abrirModalDetalhesProjeto(this)"></i>
+                                <i class="fas fa-info-circle icon-detalhes" onclick="abrirModalDetalhesProjeto(this)" data-modal-target="modalProjeto"></i>
                                 <button type="button" class="btn-remover" onclick="removerGrupoAcesso(this)">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
