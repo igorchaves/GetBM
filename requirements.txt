@@ -2,3 +2,4 @@ flask
 pyvis
 pandas
 networkx
+flask_sqlalchemy
