@@ -3,3 +3,4 @@ pyvis
 pandas
 networkx
 flask_sqlalchemy
+python-dotenv
