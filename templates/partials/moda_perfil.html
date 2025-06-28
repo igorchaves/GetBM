@@ -1,71 +1,76 @@
-<div id="modalPerfil" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2>Perfil do Usuário</h2>
-            <span class="close" onclick="fecharModalPerfilUsuario()">&times;</span>
-        </div>
-
-        <div class="modal-tabs">
-            <button class="tab-button active" onclick="abrirAbaPerfil()">Perfil</button>
-            <button class="tab-button" onclick="abrirAbaSeguranca()">Segurança</button>
-        </div>
-
-        <form id="formPerfilUsuario">
-            <!-- Aba Perfil -->
-            <div id="abaPerfil" class="tab-content active">
-                <div class="perfil-container">
-                    <!-- Informações do Usuário -->
-                    <div class="perfil-informacoes">
-                        <h3>Informações do Usuário</h3>
-                        <div class="form-group">
-                            <label for="nomeCompleto">Nome Completo <span class="required">*</span></label>
-                            <input type="text" id="nomeCompleto" name="nomeCompleto" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="emailUsuario">Email</label>
-                            <input type="email" id="emailUsuario" name="emailUsuario">
-                        </div>
-                        <div class="form-group">
-                            <label for="telefoneUsuario">Telefone</label>
-                            <input type="tel" id="telefoneUsuario" name="telefoneUsuario">
-                        </div>
-                    </div>
-
-                    <!-- Acesso Projetos -->
-                    <div class="perfil-acesso">
-                        <h3>Acesso ao Projetos</h3>
-                        <div id="gruposAcessoContainer">
-                            <div class="grupo-acesso-item">
-                                <input type="radio" name="grupoAcessoSelecionado">
-                                <input type="text" name="grupoAcesso[]" placeholder="Nome do Projeto">
-                                <button type="button" class="btn-remover" onclick="removerGrupoAcesso(this)">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Botão fora das colunas para manter alinhamento -->
-                <div class="grupo-acesso-actions">
-                    <button type="button" class="modal-btn-salvar" onclick="adicionarGrupoAcesso()">
-                        <i class="fas fa-folder-plus icon-spacing"></i> Adicionar Projeto
-                    </button>
-                </div>
-            </div>
-
-            <!-- Aba Segurança -->
-            <div id="abaSeguranca" class="tab-content">
-                <h3>Segurança</h3>
-                <p>Configurações de segurança do usuário.</p>
-            </div>
-
-            <div class="modal-actions">
-                <button type="button" class="modal-btn-cancelar" onclick="fecharModalPerfilUsuario()">Cancelar</button>
-                <button type="submit" class="modal-btn-salvar">Salvar</button>
-            </div>
-        </form>
+<div id="modalProjeto" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Cadastro de Projeto</h2>
+      <span class="close" onclick="fecharModalProjeto()">&times;</span>
     </div>
+
+    <form id="formProjeto">
+      <div class="modal-row">
+        <div class="form-group">
+          <label for="codigo_projeto">Código Projeto <span class="required">*</span></label>
+          <input type="text" id="codigo_projeto" name="codigo_projeto" required>
+        </div>
+        <div class="form-group">
+          <label for="nome_projeto">Nome Projeto <span class="required">*</span></label>
+          <input type="text" id="nome_projeto" name="nome_projeto" required>
+        </div>
+        <div class="form-group">
+          <label for="vertical">Vertical <span class="required">*</span></label>
+          <input type="text" id="vertical" name="vertical" required>
+        </div>
+      </div>
+
+      <div class="modal-row">
+        <div class="form-group">
+          <label for="backlogInput">Backlog</label>
+          <input type="text" id="backlogInput" placeholder="Digite e pressione Enter">
+          <ul id="backlogLista" class="tag-list"></ul>
+        </div>
+        <div class="form-group">
+          <label for="jornadaInput">Seguimento (Jornada)</label>
+          <input type="text" id="jornadaInput" placeholder="Digite e pressione Enter">
+          <ul id="jornadaLista" class="tag-list"></ul>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="modal-btn-cancelar" onclick="fecharModalProjeto()">Cancelar</button>
+        <button type="submit" class="modal-btn-salvar">Salvar</button>
+      </div>
+    </form>
+  </div>
 </div>
 
-<script src="{{ url_for('static', filename='js/acoes_perfil.js') }}"> </script>
+<script>
+  function setupTagInput(inputId, listId, inputName) {
+    const input = document.getElementById(inputId);
+    const list = document.getElementById(listId);
+
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && input.value.trim() !== '') {
+        e.preventDefault();
+        const valor = input.value.trim();
+
+        const li = document.createElement('li');
+        li.className = 'tag-item';
+        li.innerHTML = `
+          <span>${valor}</span>
+          <button type="button" class="remove-btn" onclick="this.parentElement.remove()">×</button>
+          <input type="hidden" name="${inputName}" value="${valor}">
+        `;
+        list.appendChild(li);
+        input.value = '';
+      }
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    setupTagInput('jornadaInput', 'jornadaLista', 'jornadas[]');
+    setupTagInput('backlogInput', 'backlogLista', 'backlogs[]');
+  });
+
+  function fecharModalProjeto() {
+    document.getElementById('modalProjeto').style.display = 'none';
+  }
+</script>

@@ -1,10 +1,18 @@
 <div id="sidebar" class="sidebar">
-  <a href="{{ url_for('app.index') }}" ><i class="fas fa-home"></i> <span class="menu-text">Home</span></a>
-  <a href="{{ url_for('app.backlog') }}"><i class="fas fa-clipboard-list"></i> <span class="menu-text">Backlog</span></a>
-  <a href="#"><i class="fas fa-sitemap"></i> <span class="menu-text">Organograma</span></a>
+  <a href="{{ url_for('app.index') }}">
+    <i class="fas fa-home"></i> <span class="menu-text">Home</span>
+  </a>
+  <a href="{{ url_for('app.backlog') }}">
+    <i class="fas fa-clipboard-list"></i> <span class="menu-text">Backlog</span>
+  </a>
+  <a href="#">
+    <i class="fas fa-sitemap"></i> <span class="menu-text">Organograma</span>
+  </a>
 
   <div class="menu-group">
-    <a href="#" class="has-submenu"><i class="fas fa-sliders-h"></i> <span class="menu-text">Parametrização</span></a>
+    <a href="#" class="has-submenu">
+      <i class="fas fa-sliders-h"></i> <span class="menu-text">Parametrização</span>
+    </a>
     <div class="submenu">
       <a href="{{ url_for('app.funcionalidades') }}">Funcionalidade</a>
       <a href="{{ url_for('app.status') }}">Status</a>
@@ -14,10 +22,22 @@
   </div>
 
   <div class="menu-group">
-    <a href="#" class="has-submenu"><i class="fas fa-cogs"></i> <span class="menu-text">Configurações</span></a>
+    <a href="#" class="has-submenu">
+      <i class="fas fa-cogs"></i> <span class="menu-text">Configurações</span>
+    </a>
     <div class="submenu">
       <a href="{{ url_for('app.projeto') }}">Projeto</a>
       <a href="{{ url_for('app.usuario') }}">Usuários</a>
+    </div>
+  </div>
+
+  <div class="menu-usuario">
+    <a href="#" class="has-submenu">
+      <i class="fas fa-user-circle"></i> <span class="menu-text">Conta</span>
+    </a>
+    <div class="submenu">
+      <a href="{{ url_for('app.perfil') }}">Perfil</a>
+      <a href="#">Sair</a>
     </div>
   </div>
 </div>

@@ -1,4 +1,11 @@
 {% extends 'base.html' %}
+{% block breadcrumb %}
+<ul class="breadcrumb">
+    <li><a href="/"><i class="fas fa-home"></i></a></li>
+    <li>Parametrização</li>
+    <li>Categoria</li>
+</ul>
+{% endblock %}
 
 {% block title %}Cadastro de Categoria Backlog{% endblock %}
 
@@ -10,7 +17,7 @@
 
     <div class="form-card">
         <h3 class="section-form-title">Adicionar nova categoria Backlog</h3>
-        <form method="POST" action="/cadastrar-categoria" class="form-grid form-grid-inline-btn">
+        <form method="POST" action="/cadastrar-categoria" class="form-grid">
             <div class="form-group">
                 <label for="codigoCategoria">Código Categoria*</label>
                 <input type="text" id="codigoCategoria" name="codigoCategoria" required>
@@ -19,19 +26,15 @@
                 <label for="nomeCategoria">Nome da Categoria*</label>
                 <input type="text" id="nomeCategoria" name="nomeCategoria" required>
             </div>
-            <div class="form-group form-group-inline-btn">
-                <label>&nbsp;</label> <!-- espaço reservado para manter alinhamento -->
-                <div class="input-with-button">
-                    <button type="reset" class="btn btn-secondary btn-inline">
-                        <i class="fas fa-times"></i> Limpar
-                    </button>
-                    <button type="submit" class="btn btn-primary btn-inline">
-                        <i class="fas fa-plus"></i> Adicionar
-                    </button>
-                </div>
+            <div class="form-actions">
+                <button type="reset" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Limpar
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Adicionar
+                </button>
             </div>
         </form>
-
     </div>
 
     <div class="table-card">
@@ -39,9 +42,9 @@
         <table>
             <thead>
                 <tr>
-                    <th>Cod Categoria</th>
-                    <th>Nome da Categoria</th>
-                    <th>Ações</th>
+                    <th style="width: 10%;">Código Categoria</th>
+                    <th style="width: 85%;">Nome da Categoria</th>
+                    <th style="width: 5%;">Ações</th>
                 </tr>
             </thead>
             <tbody>
