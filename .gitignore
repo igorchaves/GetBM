@@ -3,6 +3,8 @@ venv/
 Scripts/
 .env*
 auto_migrate.py
+env/
+.venv/
 
 #Banco de Dados 
 instance/getbm.db
@@ -17,6 +19,8 @@ __pycache__/
 *.egg-info/
 .pytest_cache/
 .mypy_cache/
+.Python
+
 
 # Arquivos temporários e de log
 *.log
