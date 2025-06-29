@@ -8,6 +8,7 @@ auto_migrate.py
 __pycache__/
 *.py[cod]
 *.pyo
+*.pyc
 *.pyd
 *.egg-info/
 .pytest_cache/
