@@ -4,6 +4,10 @@ Scripts/
 .env*
 auto_migrate.py
 
+#Banco de Dados 
+instance/getbm.db
+getbm.db
+
 # Cache do Python
 __pycache__/
 *.py[cod]
