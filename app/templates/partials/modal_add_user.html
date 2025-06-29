@@ -4,7 +4,8 @@
       <h2>Cadastro de Usuário</h2>
       <span class="close" onclick="fecharModalUsuario()">&times;</span>
     </div>
-    <form id="formUsuario">
+    <!-- ✅ Formulário com método POST e rota correta -->
+    <form id="formUsuario" method="POST" action="{{ url_for('app.cadastrar_usuario') }}">
       <div class="modal-row">
         <div class="form-group">
           <label for="codigoUsuario">Código do Usuário <span class="required">*</span></label>

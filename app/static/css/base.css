@@ -51,6 +51,17 @@ button {
     background-color: #e2e6ea;
 }
 
+/* Estilo específico para links que se comportam como botões */
+.btn-cancelar {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 12px;
+}
+
+
 /* ============================
    Títulos de Seções
 ============================ */

@@ -53,6 +53,7 @@
                 </tr>
             </thead>
             <tbody>
+                {% if sprints %}
                 {% for sprint in sprints %}
                 <tr>
                     <td>{{ sprint.nome }}</td>
@@ -69,6 +70,11 @@
                     </td>
                 </tr>
                 {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="4" class="text-center">Nenhuma sprint cadastrada.</td>
+                </tr>
+                {% endif %}
             </tbody>
         </table>
     </div>

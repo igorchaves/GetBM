@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block breadcrumb %}
 <ul class="breadcrumb">
     <li><a href="/"><i class="fas fa-home"></i></a></li>
@@ -7,61 +8,54 @@
 </ul>
 {% endblock %}
 
-{% block title %}Gestão de Usuarios{% endblock %}
+{% block title %}Gestão de Usuários{% endblock %}
 
 {% block content %}
 <div class="content">
     <div class="top-bar">
-        <h2>Gestão Usuarios</h2>
+        <h2>Gestão Usuários</h2>
         <button type="button" class="btn-primary top-bar-btn" data-modal-target="modalUsuario">
             <i class="fas fa-plus"></i> Criar Usuário
         </button>
     </div>
 
     <div class="table-card">
-        <h3 class="section-form-title">Usuarios cadastrados</h3>
+        <h3 class="section-form-title">Usuários cadastrados</h3>
         <table>
             <thead>
                 <tr>
-                    <th style="width: 10%;">Código Usuario</th>
-                    <th style="width: 85%;">Nome Usuario</th>
-                    <th style="width: 5%;">Ações</th>
+                    <th>Código Usuário</th>
+                    <th>Nome Usuário</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Registro de exemplo com dropdown -->
-                <tr>
-                    <td>001</td>
-                    <td>João da Silva</td>
-                    <td>
-                        <div class="dropdown">
-                            <button class="dropdown-toggle">
-                                <i class="fas fa-ellipsis-v"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a href="{{ url_for('app.perfil') }}"><i class="fas fa-edit"></i> Editar</a>
-                                <a href="#"><i class="fas fa-trash-alt"></i> Excluir</a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-
-                <!-- Registros dinâmicos do backend -->
                 {% for item in resultados %}
                 <tr>
-                    <td>{{ item.codigo_usuario }}</td>
-                    <td>{{ item.nome_usuario }}</td>
+                    <!-- Código do usuário como link para edição -->
                     <td>
-                        <div class="dropdown">
-                            <button class="dropdown-toggle">
-                                <i class="fas fa-ellipsis-v"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a href="{{ url_for('app.perfil') }}"><i class="fas fa-edit"></i> Editar</a>
-                                <a href="#"><i class="fas fa-trash-alt"></i> Excluir</a>
-                            </div>
-                        </div>
+                        <a href="{{ url_for('app.perfil', id=item.id) }}">
+                            {{ item.codigo_usuario }}
+                        </a>
                     </td>
+
+                    <!-- Nome do usuário -->
+                    <td>{{ item.nome_usuario }}</td>
+
+                    <!-- Ícone de lixeira para exclusão -->
+                    <td>
+                        <form action="{{ url_for('app.excluir_usuario', id=item.id) }}" method="post"
+                            style="display:inline;">
+                            <button type="submit" onclick="return confirm('Deseja realmente excluir este usuário?')"
+                                class="btn-icon-only">
+                                <i class="fas fa-trash-alt btn-remover"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="3" style="text-align: center;">Nenhum usuário cadastrado.</td>
                 </tr>
                 {% endfor %}
             </tbody>

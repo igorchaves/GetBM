@@ -1,7 +1,8 @@
-from flask import Blueprint, render_template, request, redirect, url_for
-from app.models import Sprint
-from app import db
+import json
 from datetime import datetime
+from flask import Blueprint, render_template, request, redirect, url_for
+from app.models import Sprint, Usuario, LogAuditoria
+from app import db
 
 app = Blueprint('app', __name__, template_folder='../templates')
 
@@ -30,21 +31,74 @@ def categoria():
 def status():
     return render_template('status.html')
 
+# ✅ ROTA PARA LISTA DE USUÁRIOS CADASTRADOS
 @app.route('/usuario')
 def usuario():
-    return render_template('usuario.html')
+    resultados = Usuario.query.filter_by(ativo=True).order_by(Usuario.codigo_usuario).all()
+    return render_template('usuario.html', resultados=resultados)
 
-@app.route('/perfil')
-def perfil():
-    return render_template('perfil.html')
+# ✅ ROTA PARA CADASTRAR USUÁRIO
+@app.route('/cadastrar-usuario', methods=['POST'])
+def cadastrar_usuario():
+    codigo = request.form['codigoUsuario']
+    nome = request.form['nomeUsuario']
+    email = request.form.get('emailUsuario')
+    telefone = request.form.get('telefoneUsuario')
 
-# 🆕 ROTA PARA LISTAR SPRINTS ATIVAS
+    novo_usuario = Usuario(
+        codigo_usuario=codigo,
+        nome_usuario=nome,
+        email=email,
+        telefone=telefone
+    )
+    db.session.add(novo_usuario)
+    db.session.commit()
+
+    return redirect(url_for('app.usuario'))
+
+# ✅ ROTA PARA EDITAR USUÁRIO
+@app.route('/perfil/<int:id>', methods=['GET', 'POST'])
+def perfil(id):
+    usuario = Usuario.query.get_or_404(id)
+
+    if request.method == 'POST':
+        usuario.nome_usuario = request.form['nomeCompleto']
+        usuario.email = request.form.get('emailUsuario')
+        usuario.telefone = request.form.get('telefoneUsuario')
+        db.session.commit()
+        return redirect(url_for('app.usuario'))
+
+    return render_template('perfil.html', usuario=usuario)
+
+@app.route('/excluir-usuario/<int:id>', methods=['POST'])
+def excluir_usuario(id):
+    usuario = Usuario.query.get_or_404(id)
+
+    log = LogAuditoria(
+        tabela='usuario',
+        acao='exclusao',
+        id_registro=usuario.id,
+        dados_anteriores=json.dumps({
+            'codigo_usuario': usuario.codigo_usuario,
+            'nome_usuario': usuario.nome_usuario,
+            'email': usuario.email,
+            'telefone': usuario.telefone
+        }),
+        data_acao=datetime.now()
+    )
+    db.session.add(log)
+    db.session.delete(usuario)
+    db.session.commit()
+
+    return redirect(url_for('app.usuario'))
+
+# ✅ ROTA PARA LISTAR SPRINTS ATIVAS
 @app.route('/sprint')
 def sprint():
     sprints = Sprint.query.filter_by(ativo=True).order_by(Sprint.data_inicio.desc()).all()
     return render_template('sprint.html', sprints=sprints)
 
-# 🆕 ROTA PARA CADASTRAR SPRINT
+# ✅ ROTA PARA CADASTRAR SPRINT
 @app.route('/cadastrar-sprint', methods=['POST'])
 def cadastrar_sprint():
     nome = request.form['sprint']
@@ -57,7 +111,7 @@ def cadastrar_sprint():
 
     return redirect(url_for('app.sprint'))
 
-# 🆕 ROTA PARA EXCLUSÃO LÓGICA DE SPRINT
+# ✅ ROTA PARA EXCLUSÃO LÓGICA DE SPRINT (mantida como está)
 @app.route('/excluir-sprint/<int:id>', methods=['POST'])
 def excluir_sprint(id):
     sprint = Sprint.query.get_or_404(id)

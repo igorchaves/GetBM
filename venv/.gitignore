@@ -1,8 +1,8 @@
 # Ambientes virtuais
 venv/
-venv/
 Scripts/
 .env*
+auto_migrate.py
 
 # Cache do Python
 __pycache__/
