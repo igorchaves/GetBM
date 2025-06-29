@@ -1,11 +1,17 @@
-from flask import Flask
-from app.routes import app as app_routes
+import os
+import sys
+import subprocess
+from dotenv import load_dotenv
+from app import create_app
 
-app = Flask(__name__)
+# Carrega o .env.development
+load_dotenv(".env.development")
 
-# Registro das rotas
-app.register_blueprint(app_routes)
+# Executa auto_migrate.py se for ambiente de desenvolvimento
+if os.getenv("FLASK_ENV") == "development" and os.getenv("AUTO_MIGRATE", "false").lower() == "true":
+    subprocess.run([sys.executable, "auto_migrate.py"])
+
+app = create_app()
 
 if __name__ == '__main__':
     app.run(debug=True)
-

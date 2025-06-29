@@ -1,12 +1,14 @@
 # Ambientes virtuais
 venv/
-env/
 Scripts/
+.env*
+auto_migrate.py
 
 # Cache do Python
 __pycache__/
 *.py[cod]
 *.pyo
+*.pyc
 *.pyd
 *.egg-info/
 .pytest_cache/

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+<ul class="breadcrumb">
+    <li><a href="/"><i class="fas fa-home"></i></a></li>
+    <li>Configuração</li>
+    <li>Usuário</li>
+</ul>
+{% endblock %}
+
+{% block title %}Gestão de Usuários{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="top-bar">
+        <h2>Gestão Usuários</h2>
+        <button type="button" class="btn-primary top-bar-btn" data-modal-target="modalUsuario">
+            <i class="fas fa-plus"></i> Criar Usuário
+        </button>
+    </div>
+
+    <div class="table-card">
+        <h3 class="section-form-title">Usuários cadastrados</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Código Usuário</th>
+                    <th>Nome Usuário</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in resultados %}
+                <tr>
+                    <!-- Código do usuário como link para edição -->
+                    <td>
+                        <a href="{{ url_for('app.perfil', id=item.id) }}">
+                            {{ item.codigo_usuario }}
+                        </a>
+                    </td>
+
+                    <!-- Nome do usuário -->
+                    <td>{{ item.nome_usuario }}</td>
+
+                    <!-- Ícone de lixeira para exclusão -->
+                    <td>
+                        <form action="{{ url_for('app.excluir_usuario', id=item.id) }}" method="post"
+                            style="display:inline;">
+                            <button type="submit" onclick="return confirm('Deseja realmente excluir este usuário?')"
+                                class="btn-icon-only">
+                                <i class="fas fa-trash-alt btn-remover"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="3" style="text-align: center;">Nenhum usuário cadastrado.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/acoes_tabela.js') }}"></script>
+{% endblock %}
