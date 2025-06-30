@@ -1,14 +1,36 @@
 # Ambientes virtuais
 venv/
+.venv/
+env/
 Scripts/
-.env*
+bin/
+Include/
+Lib/
+share/
+
+# Variáveis de ambiente
+.env
+.env.*
+*.env
+
+# Banco de dados local
+getbm.db
+instance/getbm.db
+*.sqlite3
+
+# Arquivos de migração e scripts auxiliares
 auto_migrate.py
+<<<<<<< HEAD
 env/
 .venv/
 
 #Banco de Dados 
 instance/getbm.db
 getbm.db
+migrations/
+=======
+
+>>>>>>> develop
 
 # Cache do Python
 __pycache__/
@@ -17,19 +39,27 @@ __pycache__/
 *.pyc
 *.pyd
 *.egg-info/
-.pytest_cache/
+.pytest_cache/git
 .mypy_cache/
 .Python
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
 
 # Arquivos temporários e de log
 *.log
 *.tmp
 *.swp
 *.bak
+*.orig
+*~
 
-# VS Code
+# IDEs e editores
 .vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
 
 # Arquivos de sistema
 .DS_Store
@@ -53,3 +83,10 @@ dist/
 
 # Arquivos de configuração temporários
 *.rc
+
+# Makefile (se for apenas para desenvolvimento)
+Makefile
+
+# Arquivos específicos do projeto a serem ignorados
+run.py
+requirements.txt
