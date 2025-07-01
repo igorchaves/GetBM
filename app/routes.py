@@ -1,6 +1,6 @@
 import json
 from datetime import datetime
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, jsonify
 from app.models import Sprint, Usuario, LogAuditoria
 from app import db
 
@@ -42,17 +42,27 @@ def usuario():
 def cadastrar_usuario():
     codigo = request.form['codigoUsuario']
     nome = request.form['nomeUsuario']
-    email = request.form.get('emailUsuario')
-    telefone = request.form.get('telefoneUsuario')
+    email = request.form.get('emailUsuario', None)
+    telefone = request.form.get('telefoneUsuario', None)
 
-    novo_usuario = Usuario(
-        codigo_usuario=codigo,
-        nome_usuario=nome,
-        email=email,
-        telefone=telefone
-    )
-    db.session.add(novo_usuario)
-    db.session.commit()
+    # ✅ Verificação no backend
+    usuario_existente = Usuario.query.filter_by(codigo_usuario=codigo).first()
+    if usuario_existente:
+        # Aqui você pode redirecionar de volta com uma mensagem flash, ou retornar um erro amigável
+        return "Usuário já cadastrado. Por favor, escolha outro código.", 400
+
+    try:
+        novo_usuario = Usuario(
+            codigo_usuario=codigo,
+            nome_usuario=nome,
+            email=email,
+            telefone=telefone
+        )
+        db.session.add(novo_usuario)
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        return f"Erro ao cadastrar usuário: {str(e)}", 500
 
     return redirect(url_for('app.usuario'))
 
@@ -91,6 +101,15 @@ def excluir_usuario(id):
     db.session.commit()
 
     return redirect(url_for('app.usuario'))
+
+# ✅ ROTA PARA VERIFICAR SE O USUÁRIO JÁ ESTÁ CADASTRADO
+@app.route('/verificar-usuario', methods=['POST'])
+def verificar_usuario():
+    codigo = request.json.get('codigoUsuario')
+    usuario = Usuario.query.filter_by(codigo_usuario=codigo).first()
+    if usuario:
+        return jsonify({'existe': True, 'mensagem': 'Usuário já cadastrado.'})
+    return jsonify({'existe': False})
 
 # ✅ ROTA PARA LISTAR SPRINTS ATIVAS
 @app.route('/sprint')

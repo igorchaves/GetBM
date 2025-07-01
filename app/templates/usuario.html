@@ -32,22 +32,15 @@
             <tbody>
                 {% for item in resultados %}
                 <tr>
-                    <!-- Código do usuário como link para edição -->
                     <td>
                         <a href="{{ url_for('app.perfil', id=item.id) }}">
                             {{ item.codigo_usuario }}
                         </a>
                     </td>
-
-                    <!-- Nome do usuário -->
                     <td>{{ item.nome_usuario }}</td>
-
-                    <!-- Ícone de lixeira para exclusão -->
                     <td>
-                        <form action="{{ url_for('app.excluir_usuario', id=item.id) }}" method="post"
-                            style="display:inline;">
-                            <button type="submit" onclick="return confirm('Deseja realmente excluir este usuário?')"
-                                class="btn-icon-only">
+                        <form action="{{ url_for('app.excluir_usuario', id=item.id) }}" method="post" style="display:inline;">
+                            <button type="submit" onclick="return confirm('Deseja realmente excluir este usuário?')" class="btn-icon-only">
                                 <i class="fas fa-trash-alt btn-remover"></i>
                             </button>
                         </form>

@@ -7,6 +7,8 @@ bin/
 Include/
 Lib/
 share/
+etc/
+
 
 # Variáveis de ambiente
 .env
@@ -75,4 +77,3 @@ Makefile
 
 # Arquivos específicos do projeto a serem ignorados
 run.py
-requirements.txt

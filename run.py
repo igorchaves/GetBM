@@ -14,7 +14,7 @@ if env == "development" and os.getenv("AUTO_MIGRATE", "false").lower() == "true"
     try:
         subprocess.run([sys.executable, "auto_migrate.py"], check=True)
     except subprocess.CalledProcessError as e:
-        print(f"Erro ao executar auto_migrate.py: {e}")
+      print(f"Erro ao executar auto_migrate.py: {e}")
 
 app = create_app()
 

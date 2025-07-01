@@ -19,7 +19,9 @@ def create_app():
     )
 
     # Configurações do banco de dados
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///getbm.db'
+    basedir = os.path.abspath(os.path.dirname(__file__))
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, '..', 'instance', 'getbm.db')
+
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # Inicializa extensões

@@ -14,6 +14,7 @@ with app.app_context():
     # Marca o banco como atualizado com o modelo atual, se necessário
     stamp()
 
+
     # Gera uma nova migração com mensagem padrão
     migrate(message="Auto migration")
 
