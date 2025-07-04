@@ -28,4 +28,21 @@ document.addEventListener("DOMContentLoaded", function () {
       event.target.style.display = "none";
     }
   });
+
+    // Função de ajuste de largura
+  function ajustarLarguraModal(modal) {
+    const modalContent = modal.querySelector(".modal-content");
+    const fieldCount = modal.querySelectorAll(".form-group").length;
+
+    modalContent.classList.remove("modal-small", "modal-medium", "modal-large");
+
+    if (fieldCount <= 2) {
+      modalContent.classList.add("modal-small");
+    } else if (fieldCount <= 6) {
+      modalContent.classList.add("modal-medium");
+    } else {
+      modalContent.classList.add("modal-large");
+    }
+  }
 });
+

@@ -1,6 +1,18 @@
 /* ============================
    FORMULÁRIOS
 ============================ */
+.form-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+  gap: 20px !important;
+  width: 100% !important;
+}
+
+.form-grid > .form-group {
+  width: auto !important;
+}
+
+
 .form-card {
     background: #fff;
     padding: 20px 20px 15px 20px; /* mais espaço acima, menos abaixo */

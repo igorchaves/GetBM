@@ -41,6 +41,28 @@ class Usuario(db.Model):
 
     def __repr__(self):
         return f"<Usuario {self.codigo_usuario} - {self.nome_usuario}>"
+    
+# ----------------------------
+# Modelo Cadastro de Projeto
+# ----------------------------
+class Projeto(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    codigo_projeto = db.Column(db.String(20), unique=True, nullable=False)
+    nome_projeto = db.Column(db.String(100), nullable=False)
+    vertical = db.Column(db.String(50), nullable=False)
+
+    backlogs = db.relationship('Backlog', backref='projeto', cascade="all, delete-orphan")
+    seguimentos = db.relationship('Seguimento', backref='projeto', cascade="all, delete-orphan")
+
+class Backlog(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    descricao = db.Column(db.String(200), nullable=False)
+    projeto_id = db.Column(db.Integer, db.ForeignKey('projeto.id'), nullable=False)
+
+class Seguimento(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    descricao = db.Column(db.String(200), nullable=False)
+    projeto_id = db.Column(db.Integer, db.ForeignKey('projeto.id'), nullable=False)
 
 # ----------------------------
 # Modelo Log de Auditoria

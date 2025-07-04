@@ -15,10 +15,24 @@
   margin: 5% auto;
   padding: 20px;
   border-radius: 8px;
-  width: 60%;
+  max-width: 90vw;
+  min-width: 320px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   position: relative;
   font-size: 12px;
+}
+
+/* Controle de largura dos modais */
+.modal-small {
+  width: 400px;
+}
+
+.modal-medium {
+  width: 600px;
+}
+
+.modal-large {
+  width: 800px;
 }
 
 /* Novo cabeçalho com alinhamento horizontal */
@@ -57,7 +71,7 @@
 
 .modal-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 15px;
 }
 

@@ -1,7 +1,9 @@
 import json
 from datetime import datetime
-from flask import Blueprint, render_template, request, redirect, url_for, jsonify
-from app.models import Sprint, Usuario, LogAuditoria
+from flask import Blueprint, render_template, request, redirect, url_for, jsonify, flash
+from app.models import Sprint, Usuario, LogAuditoria, Projeto, Backlog, Seguimento
+from sqlalchemy import func
+
 from app import db
 
 app = Blueprint('app', __name__, template_folder='../templates')
@@ -137,3 +139,91 @@ def excluir_sprint(id):
     sprint.ativo = False
     db.session.commit()
     return redirect(url_for('app.sprint'))
+
+# ✅ ROTA PARA INCLUSÃO DE PROJETO
+@app.route('/cadastrar-projeto', methods=['POST'])
+def cadastrar_projeto():
+    try:
+        codigo = request.form['codigo_projeto']
+        nome = request.form['nome_projeto']
+        vertical = request.form['vertical']
+        backlogs = request.form.getlist('backlogs[]')
+        jornadas = request.form.getlist('jornadas[]')
+
+        # ✅ Verificação redundante no backend
+        mensagens = []
+
+        if Projeto.query.filter_by(codigo_projeto=codigo).first():
+            mensagens.append("Código do projeto já existe.")
+
+        for item in backlogs:
+            if Backlog.query.filter_by(descricao=item).first():
+                mensagens.append(f"Backlog '{item}' já existe.")
+
+        for item in jornadas:
+            if Seguimento.query.filter_by(descricao=item).first():
+                mensagens.append(f"Seguimento '{item}' já existe.")
+
+        # ✅ Validação opcional: listas vazias
+        if not backlogs:
+            mensagens.append("É necessário adicionar pelo menos um backlog.")
+        if not jornadas:
+            mensagens.append("É necessário adicionar pelo menos um seguimento.")
+
+        if mensagens:
+            flash(" | ".join(mensagens), 'danger')
+            return redirect(url_for('app.projeto'))
+
+        # ✅ Inserção no banco
+        projeto = Projeto(codigo_projeto=codigo, nome_projeto=nome, vertical=vertical)
+        db.session.add(projeto)
+        db.session.flush()
+
+        for item in backlogs:
+            db.session.add(Backlog(descricao=item, projeto_id=projeto.id))
+
+        for item in jornadas:
+            db.session.add(Seguimento(descricao=item, projeto_id=projeto.id))
+
+        db.session.commit()
+        flash('Projeto cadastrado com sucesso!', 'success')
+        return redirect(url_for('app.projeto'))  # ✅ rota corrigida
+
+    except Exception as e:
+        db.session.rollback()
+        print(f"[ERRO] Falha ao cadastrar projeto: {str(e)}")  # ✅ log para debug
+        flash(f'Erro ao cadastrar projeto: {str(e)}', 'danger')
+        return redirect(url_for('app.projeto'))  # ✅ rota corrigida
+    
+# ✅ ROTA PARA VERIFICAR SE O CÓDIGO DO PROJETO JÁ EXISTE
+@app.route('/verificar-projeto', methods=['POST'])
+def verificar_projeto():
+    try:
+        data = request.get_json()
+        codigo = data.get('codigoProjeto')
+        backlogs = data.get('backlogs', [])
+        jornadas = data.get('jornadas', [])
+
+        print("Backlogs recebidos:", backlogs)
+
+        mensagens = []
+
+        if Projeto.query.filter_by(codigo_projeto=codigo).first():
+            mensagens.append("Código do projeto já existe.")
+
+        for item in backlogs:
+            if Backlog.query.filter(func.lower(Backlog.descricao) == item.lower()).first():
+                mensagens.append(f"Backlog '{item}' já existe.")
+
+        for item in jornadas:
+            if Seguimento.query.filter(func.lower(Seguimento.descricao) == item.lower()).first():
+                mensagens.append(f"Seguimento '{item}' já existe.")
+
+        if mensagens:
+            return jsonify({'existe': True, 'mensagem': ' | '.join(mensagens)})
+
+        return jsonify({'existe': False})
+
+    except Exception as e:
+        print(f"[ERRO] Falha na verificação do projeto: {str(e)}")
+        return jsonify({'existe': False, 'mensagem': 'Erro interno no servidor'}), 500

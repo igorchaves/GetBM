@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block breadcrumb %}
 <ul class="breadcrumb">
     <li><a href="/"><i class="fas fa-home"></i></a></li>
@@ -16,78 +17,56 @@
     </div>
 
     <div class="form-card">
-        <h3 class="section-form-title">Adicionar novo Projeto</h3>
-        <form method="POST" action="/cadastrar-projeto" class="form-grid">
+        <h3 class="section-form-title">Cadastro de Projeto</h3>
+
+        <form id="formProjeto" method="POST" action="{{ url_for('app.cadastrar_projeto') }}" class="form-grid">
+
+            <!-- Campos do Projeto -->
             <div class="form-group">
                 <label for="codigo_projeto">Código Projeto <span class="required">*</span></label>
-                <input type="text" id="codigo_projeto" name="codigo_projeto" required>
+                <input type="text" id="codigoProjeto" name="codigo_projeto" required>
             </div>
+
             <div class="form-group">
                 <label for="nome_projeto">Nome Projeto <span class="required">*</span></label>
                 <input type="text" id="nome_projeto" name="nome_projeto" required>
             </div>
+
             <div class="form-group">
                 <label for="vertical">Vertical <span class="required">*</span></label>
                 <input type="text" id="vertical" name="vertical" required>
             </div>
-        </form>
-    </div>
 
-    <div class="listas">
-        <div class="form-card">
-            <h3 class="section-form-title">Adicionar Backlog</h3>
-            <div class="form-group">
+            <!-- Backlog -->
+            <div class="form-group" style="grid-column: 1 / -1;">
                 <label for="backlogInput">Backlog</label>
                 <input type="text" id="backlogInput" placeholder="Digite e pressione Enter">
                 <ul id="backlogLista" class="tag-list"></ul>
             </div>
-        </div>
 
-        <div class="form-card">
-            <h3 class="section-form-title">Adicionar Seguimento</h3>
-            <div class="form-group">
+            <!-- Seguimento -->
+            <div class="form-group" style="grid-column: 1 / -1;">
                 <label for="jornadaInput">Seguimento (Jornada)</label>
                 <input type="text" id="jornadaInput" placeholder="Digite e pressione Enter">
                 <ul id="jornadaLista" class="tag-list"></ul>
             </div>
-        </div>
+
+            <!-- Messagem de erro para projeto/backlog ou Seguimento ja cadastraid de erro dinâmica via JS -->
+            <div id="mensagemProjeto" class="alert erro"style="grid-column: 1 / -1;"></div>
+
+            <!-- Botões -->
+            <div class="form-actions">
+                <button type="reset" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Limpar
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    Cadastrar Projeto
+                </button>
+            </div>
+
+        </form>
     </div>
-    <div class="form-actions">
-        <button type="reset" class="btn btn-secondary">
-            <i class="fas fa-times"></i> Limpar</button>
-        <button type="submit" class="btn btn-primary">Cadastrar Projeto</button>
 
-    </div>
-</div>
-<script>
-    function setupTagInput(inputId, listId, inputName) {
-        const input = document.getElementById(inputId);
-        const list = document.getElementById(listId);
-
-        input.addEventListener('keydown', function (e) {
-            if (e.key === 'Enter' && input.value.trim() !== '') {
-                e.preventDefault();
-                const valor = input.value.trim();
-
-                const li = document.createElement('li');
-                li.className = 'tag-item';
-                li.innerHTML = `
-          <span>${valor}</span>
-          <button type="button" class="remove-btn" onclick="this.parentElement.remove()">×</button>
-          <input type="hidden" name="${inputName}" value="${valor}">
-        `;
-                list.appendChild(li);
-                input.value = '';
-            }
-        });
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-        setupTagInput('jornadaInput', 'jornadaLista', 'jornadas[]');
-        setupTagInput('backlogInput', 'backlogLista', 'backlogs[]');
-    });
-</script>
-
-
-
+<!-- Scripts Validação ao submeter o formulario e Ações dos campos Backlog e Jornada -->
+<script src="{{ url_for('static', filename='js/validar_projeto.js') }}"></script>
 {% endblock %}

@@ -2,37 +2,44 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from dotenv import load_dotenv  # ✅ Carrega variáveis do .env
+from dotenv import load_dotenv
 
-# ✅ Carrega as variáveis de ambiente do arquivo .env
+# ✅ Carrega as variáveis do .env
 load_dotenv()
 
 db = SQLAlchemy()
 migrate = Migrate()
 
 def create_app():
-    # Cria a aplicação com os diretórios corretos
     app = Flask(
         __name__,
         template_folder='templates',
         static_folder='static'
     )
 
-    # Configurações do banco de dados
-    basedir = os.path.abspath(os.path.dirname(__file__))
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, '..', 'instance', 'getbm.db')
+     # ✅ keY para autenticação e sessões
+    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
+    # ✅ Usa apenas PostgreSQL (sem fallback para SQLite)
+    db_url = os.getenv('DATABASE_URL')
+    if not db_url:
+        raise ValueError("DATABASE_URL não está definida no .env")
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = db_url
+    app.config['SQLALCHEMY_ECHO'] = True
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-    # Inicializa extensões
     db.init_app(app)
     migrate.init_app(app, db)
 
-    # Importa e registra o blueprint
+    # ✅ Importa e registra blueprints
     from app.routes import app as app_blueprint
     app.register_blueprint(app_blueprint)
 
-    # ✅ Aplica migrações automaticamente se a variável estiver ativada
+    # ✅ Ativa o log global de operações no banco
+    from app import log_db  # ativa os listeners do SQLAlchemy
+
+    # ✅ Aplica migrações automaticamente se ativado
     if os.getenv("AUTO_MIGRATE", "false").lower() == "true":
         from flask_migrate import upgrade as migrate_upgrade
         with app.app_context():
