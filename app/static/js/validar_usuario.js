@@ -9,7 +9,7 @@ document.getElementById('formUsuario').addEventListener('submit', async function
     mensagem.classList.remove('mostrar', 'erro', 'alert');
 
     try {
-        const resposta = await fetch('/verificar-usuario', {
+        const resposta = await fetch('/usuario/verificar-usuario', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ codigoUsuario: codigo })

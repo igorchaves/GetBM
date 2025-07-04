@@ -1,8 +1,8 @@
 <div id="sidebar" class="sidebar">
-  <a href="{{ url_for('app.index') }}">
+  <a href="{{ url_for('index_bp.index') }}">
     <i class="fas fa-home"></i> <span class="menu-text">Home</span>
   </a>
-  <a href="{{ url_for('app.backlog') }}">
+  <a href="{{ url_for('backlog_bp.backlog') }}">
     <i class="fas fa-clipboard-list"></i> <span class="menu-text">Backlog</span>
   </a>
   <a href="#">
@@ -14,10 +14,10 @@
       <i class="fas fa-sliders-h"></i> <span class="menu-text">Parametrização</span>
     </a>
     <div class="submenu">
-      <a href="{{ url_for('app.funcionalidades') }}">Funcionalidade</a>
-      <a href="{{ url_for('app.status') }}">Status</a>
-      <a href="{{ url_for('app.categoria') }}">Categoria</a>
-      <a href="{{ url_for('app.sprint') }}">Sprint</a>
+      <a href="{{ url_for('funcionalidades_bp.funcionalidades') }}">Funcionalidade</a>
+      <a href="{{ url_for('status_bp.status') }}">Status</a>
+      <a href="{{ url_for('categoria_bp.categoria') }}">Categoria</a>
+      <a href="{{ url_for('sprint_bp.sprint') }}">Sprint</a>
     </div>
   </div>
 
@@ -26,8 +26,8 @@
       <i class="fas fa-cogs"></i> <span class="menu-text">Configurações</span>
     </a>
     <div class="submenu">
-      <a href="{{ url_for('app.projeto') }}">Projeto</a>
-      <a href="{{ url_for('app.usuario') }}">Usuários</a>
+      <a href="{{ url_for('projeto_bp.projeto') }}">Projeto</a>
+      <a href="{{ url_for('usuario_bp.usuario') }}">Usuários</a>
     </div>
   </div>
 

@@ -17,9 +17,9 @@
     </div>
 
     <div class="form-card">
-        <h3 class="section-form-title">Cadastro de Projeto</h3>
+        <h3 class="section-form-title">Informações do projeto</h3>
 
-        <form id="formProjeto" method="POST" action="{{ url_for('app.cadastrar_projeto') }}" class="form-grid">
+        <form id="formProjeto" method="POST" action="{{ url_for('projeto_bp.cadastrar_projeto') }}" class="form-grid">
 
             <!-- Campos do Projeto -->
             <div class="form-group">
@@ -66,6 +66,46 @@
 
         </form>
     </div>
+
+    <div class="table-card">
+    <h3 class="section-form-title">Projetos cadastrados</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Vertical</th>
+                <th>Backlogs</th>
+                <th>Seguimentos</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in resultados %}
+            <tr>
+                <td>{{ item.codigo }}</td>
+                <td>{{ item.nome }}</td>
+                <td>{{ item.vertical }}</td>
+                <td>
+                    {% for b in item.backlogs %}
+                        <span class="tag">{{ b }}</span>
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for j in item.jornadas %}
+                        <span class="tag">{{ j }}</span>
+                    {% endfor %}
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5" style="text-align: center;">Nenhum projeto cadastrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
 
 <!-- Scripts Validação ao submeter o formulario e Ações dos campos Backlog e Jornada -->
 <script src="{{ url_for('static', filename='js/validar_projeto.js') }}"></script>

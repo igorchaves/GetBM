@@ -33,14 +33,15 @@
                 {% for item in resultados %}
                 <tr>
                     <td>
-                        <a href="{{ url_for('app.perfil', id=item.id) }}">
+                        <a href="{{ url_for('usuario_bp.perfil', id=item.id) }}">
                             {{ item.codigo_usuario }}
                         </a>
                     </td>
                     <td>{{ item.nome_usuario }}</td>
                     <td>
-                        <form action="{{ url_for('app.excluir_usuario', id=item.id) }}" method="post" style="display:inline;">
-                            <button type="submit" onclick="return confirm('Deseja realmente excluir este usuário?')" class="btn-icon-only">
+                        <form action="{{ url_for('usuario_bp.excluir_usuario', id=item.id) }}" method="post" style="display:inline;">
+                            <button type="submit" onclick="return confirm('Deseja realmente excluir este usuário?')"
+                                class="btn-icon-only">
                                 <i class="fas fa-trash-alt btn-remover"></i>
                             </button>
                         </form>

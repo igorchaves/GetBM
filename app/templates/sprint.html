@@ -60,7 +60,7 @@
                     <td>{{ sprint.data_inicio.strftime('%d/%m/%Y') }}</td>
                     <td>{{ sprint.data_fim.strftime('%d/%m/%Y') }}</td>
                     <td>
-                        <form action="{{ url_for('app.excluir_sprint', id=sprint.id) }}" method="post"
+                        <form action="{{ url_for('sprint_bp.excluir_sprint', id=sprint.id) }}" method="post"
                             style="display:inline;">
                             <button type="submit" onclick="return confirm('Deseja realmente excluir esta sprint?')"
                                 class="btn-icon-only">

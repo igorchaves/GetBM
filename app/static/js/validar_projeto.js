@@ -17,7 +17,7 @@ document.getElementById('formProjeto').addEventListener('submit', async function
     mensagem.classList.remove('mostrar', 'erro', 'alert');
 
     try {
-        const resposta = await fetch('/verificar-projeto', {
+        const resposta = await fetch('/projeto/verificar-projeto', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

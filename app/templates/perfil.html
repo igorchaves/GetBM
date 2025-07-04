@@ -3,7 +3,7 @@
 <ul class="breadcrumb">
     <li><a href="/"><i class="fas fa-home"></i></a></li>
     <li>Configuração</li>
-    <li><a href="{{ url_for('app.usuario') }}">Usuário</a></li>
+    <li><a href="{{ url_for('usuario_bp.usuario') }}">Usuário</a></li>
     <li>Perfil</li>
 </ul>
 {% endblock %}
@@ -26,7 +26,7 @@
             <button class="perfil-tab-button" onclick="abrirAbaSeguranca()">Segurança</button>
         </div>
 
-        <form id="formPerfilUsuario" method="POST" action="{{ url_for('app.perfil', id=usuario.id) }}">
+        <form id="formPerfilUsuario" method="POST" action="{{ url_for('usuario_bp.perfil', id=usuario.id) }}">
             <!-- Aba Perfil -->
             <div id="abaPerfil" class="perfil-tab-content active">
                 <div class="perfil-container">
@@ -87,7 +87,7 @@
 
         <!-- Botões fora do form, na parte inferior direita -->
         <div class="perfil-actions">
-            <a href="{{ url_for('app.usuario') }}" class="btn btn-secondary btn-cancelar">Cancelar</a>
+            <a href="{{ url_for('usuario_bp.usuario') }}" class="btn btn-secondary btn-cancelar">Cancelar</a>
             <button type="submit" form="formPerfilUsuario" class="btn btn-primary">Salvar</button>
         </div>
     </div>
