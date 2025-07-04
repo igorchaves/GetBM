@@ -9,11 +9,11 @@ Lib/
 share/
 etc/
 
-
 # Variáveis de ambiente
 .env
 .env.*
 *.env
+.flaskenv
 
 # Banco de dados local
 getbm.db
@@ -48,6 +48,10 @@ __pycache__/
 .idea/
 *.sublime-project
 *.sublime-workspace
+*~
+*.bak
+*.tmp
+
 
 # Arquivos de sistema
 .DS_Store
@@ -72,8 +76,10 @@ dist/
 # Arquivos de configuração temporários
 *.rc
 
-# Makefile (se for apenas para desenvolvimento)
+# Arquivos e pastas adicionais
+logs/
+.flaskenv
 Makefile
-
-# Arquivos específicos do projeto a serem ignorados
 run.py
+logs/
+.flaskenv
