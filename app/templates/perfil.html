@@ -50,24 +50,47 @@
                         </div>
                     </div>
 
-
-                    <!-- Acesso ao Projetos -->
+                    <!-- Acesso ao Projetos [VAMOS AJUSTA ESTE PONTO]-->
                     <div class="perfil-acesso">
                         <h3 class="section-form-title">Acesso ao Projetos</h3>
                         <div id="gruposAcessoContainer">
+                            {% for projeto_id in projetos_usuario_ids %}
+                            {% set projeto_nome = '' %}
+                            {% for p in todos_projetos %}
+                            {% if p.id == projeto_id %}
+                            {% set projeto_nome = p.nome_projeto %}
+                            {% endif %}
+                            {% endfor %}
+
                             <div class="perfil-grupo-acesso-item">
                                 <input type="radio" name="grupoAcessoSelecionado" />
-                                <input type="text" name="grupoAcesso[]" placeholder="Nome do Projeto"
-                                    class="input-projeto" />
+
+                                <!-- Campo visível com autocomplete -->
+                                <input type="text" name="projetosSelecionadosNomes[]" class="input-projeto"
+                                    list="projetosDisponiveis" value="{{ projeto_nome }}"
+                                    oninput="atualizarProjetoSelecionado(this)" />
+
+                                <!-- Campo oculto que será preenchido com o ID do projeto -->
+                                <input type="hidden" name="projetosSelecionados[]" value="{{ projeto_id }}" />
+
                                 <i class="fas fa-info-circle icon-detalhes" onclick="abrirModalDetalhesProjeto(this)"
                                     data-modal-target="modalProjeto"></i>
+
                                 <button type="button" class="btn-remover" onclick="removerGrupoAcesso(this)">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </div>
+                            {% endfor %}
                         </div>
 
-                        <!-- Botão Adicionar Projeto alinhado à direita -->
+                        <!-- Lista de projetos disponíveis para autocomplete -->
+                        <datalist id="projetosDisponiveis">
+                            {% for projeto in todos_projetos %}
+                            <option data-id="{{ projeto.id }}" value="{{ projeto.nome_projeto }}"></option>
+                            {% endfor %}
+                        </datalist>
+
+                        <!-- Botão Adicionar Projeto -->
                         <div class="perfil-grupo-acesso-actions">
                             <button type="button" id="botao-adicionar-projeto" class="btn-adicionar"
                                 onclick="adicionarGrupoAcesso()">
@@ -75,6 +98,7 @@
                             </button>
                         </div>
                     </div>
+
                 </div>
             </div>
 

@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, jsonify
-from app.models import Usuario, LogAuditoria
+from app.models import Usuario, LogAuditoria, Projeto  # Adicionado Projeto
 from app import db
 from datetime import datetime
 import json
@@ -48,10 +48,24 @@ def perfil(id):
         usuario.nome_usuario = request.form['nomeCompleto']
         usuario.email = request.form.get('emailUsuario')
         usuario.telefone = request.form.get('telefoneUsuario')
+
+        # Atualiza os projetos associados
+        ids_projetos = request.form.getlist('projetosSelecionados[]')
+        usuario.projetos = Projeto.query.filter(Projeto.id.in_(ids_projetos)).all()
+
         db.session.commit()
         return redirect(url_for('usuario_bp.usuario'))
 
-    return render_template('perfil.html', usuario=usuario)
+    # Carrega todos os projetos e os projetos do usuário
+    todos_projetos = Projeto.query.all()
+    projetos_usuario_ids = [p.id for p in usuario.projetos]
+
+    return render_template(
+        'perfil.html',
+        usuario=usuario,
+        todos_projetos=todos_projetos,
+        projetos_usuario_ids=projetos_usuario_ids
+    )
 
 # ✅ ROTA PARA EXCLUIR USUÁRIO
 @usuario_bp.route('/excluir-usuario/<int:id>', methods=['POST'])

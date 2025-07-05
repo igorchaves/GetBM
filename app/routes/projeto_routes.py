@@ -77,6 +77,27 @@ def cadastrar_projeto():
         print(f"[ERRO] Falha ao cadastrar projeto: {str(e)}")
         flash(f'Erro ao cadastrar projeto: {str(e)}', 'danger')
         return redirect(url_for('projeto_bp.projeto'))
+    
+# Rota para excluir projeto e seus dados relacionados
+@projeto_bp.route('/deletar-projeto/<int:id>', methods=['POST'])
+def deletar_projeto(id):
+    try:
+        projeto = Projeto.query.get_or_404(id)
+
+        # Exclui os backlogs e seguimentos relacionados
+        Backlog.query.filter_by(projeto_id=projeto.id).delete()
+        Seguimento.query.filter_by(projeto_id=projeto.id).delete()
+
+        # Agora exclui o projeto
+        db.session.delete(projeto)
+        db.session.commit()
+
+        flash('Projeto e dados relacionados excluídos com sucesso!', 'success')
+    except Exception as e:
+        db.session.rollback()
+        flash(f'Erro ao excluir projeto: {str(e)}', 'danger')
+
+    return redirect(url_for('projeto_bp.projeto'))
 
 # Rota para verificação AJAX
 @projeto_bp.route('/verificar-projeto', methods=['POST'])

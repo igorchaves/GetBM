@@ -19,12 +19,27 @@ function adicionarGrupoAcesso() {
 
     novoGrupo.innerHTML = `
         <input type="radio" name="grupoAcessoSelecionado" />
-        <input type="text" name="grupoAcesso[]" placeholder="Grupo de Acesso" class="input-projeto" />
-        <i class="fas fa-info-circle icon-detalhes" onclick="abrirModalDetalhesProjeto(this)"></i>
+
+        <!-- Campo visível com autocomplete -->
+        <input type="text"
+               name="projetosSelecionadosNomes[]"
+               placeholder="Nome do Projeto"
+               class="input-projeto"
+               list="projetosDisponiveis"
+               oninput="atualizarProjetoSelecionado(this)" />
+
+        <!-- Campo oculto com o ID do projeto -->
+        <input type="hidden" name="projetosSelecionados[]" value="" />
+
+        <i class="fas fa-info-circle icon-detalhes"
+           onclick="abrirModalDetalhesProjeto(this)"
+           data-modal-target="modalProjeto"></i>
+
         <button type="button" class="btn-remover" onclick="removerGrupoAcesso(this)">
             <i class="fas fa-trash-alt"></i>
         </button>
     `;
+
     container.appendChild(novoGrupo);
 }
 
@@ -47,4 +62,17 @@ function removerGrupoAcesso(botao) {
     }
 
     item.remove();
+}
+
+function atualizarProjetoSelecionado(input) {
+    const datalist = document.getElementById('projetosDisponiveis');
+    const hiddenInput = input.parentElement.querySelector('input[type="hidden"]');
+    const valorDigitado = input.value;
+
+    const optionSelecionada = Array.from(datalist.options).find(opt => opt.value === valorDigitado);
+    if (optionSelecionada) {
+        hiddenInput.value = optionSelecionada.dataset.id;
+    } else {
+        hiddenInput.value = ''; // Limpa se não for um projeto válido
+    }
 }
