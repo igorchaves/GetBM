@@ -24,7 +24,12 @@ def projeto():
             'jornadas': jornadas
         })
 
-    return render_template('projeto.html', resultados=resultados)
+    return render_template('admin/projeto.html', resultados=resultados)
+
+# Rota para acessar a página de cadastro de projeto
+@projeto_bp.route('/add_projeto')
+def add_projeto():
+    return render_template('admin/add_projeto.html')
 
 # Rota para cadastrar novo projeto
 @projeto_bp.route('/cadastrar-projeto', methods=['POST'])
@@ -131,3 +136,5 @@ def verificar_projeto():
     except Exception as e:
         print(f"[ERRO] Falha na verificação do projeto: {str(e)}")
         return jsonify({'existe': False, 'mensagem': 'Erro interno no servidor'}), 500
+    
+

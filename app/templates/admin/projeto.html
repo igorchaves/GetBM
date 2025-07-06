@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+<ul class="breadcrumb">
+    <li><a href="/"><i class="fas fa-home"></i></a></li>
+    <li>Configuração</li>
+    <li>Projetos</li>
+</ul>
+{% endblock %}
+
+{% block title %}Projetos{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="top-bar">
+        <h2>Projetos</h2>
+        <a href="{{ url_for('projeto_bp.add_projeto')}}" class="btn btn-primary btn-geral"><i class="fas fa-plus"></i>
+            Adicionar Projeto</a>
+    </div>
+
+    <div class="table-card">
+        <h3 class="section-form-title">Projetos cadastrados</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Vertical</th>
+                    <th>Backlogs</th>
+                    <th>Seguimentos</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in resultados %}
+                <tr>
+                    <td>{{ item.codigo }}</td>
+                    <td>{{ item.nome }}</td>
+                    <td>{{ item.vertical }}</td>
+                    <td>
+                        {% for b in item.backlogs %}
+                        <span class="tag">{{ b }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for j in item.jornadas %}
+                        <span class="tag">{{ j }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <form action="{{ url_for('projeto_bp.deletar_projeto', id=item['id']) }}" method="post"
+                            style="display:inline;">
+                            <button type="submit" onclick="return confirm('Deseja realmente excluir este projeto?')"
+                                class="btn-icon-only">
+                                <i class="fas fa-trash-alt btn-remover"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="6" style="text-align: center;">Nenhum projeto cadastrado.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endblock %}

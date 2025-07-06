@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block breadcrumb %}
 <ul class="breadcrumb">
     <li><a href="/"><i class="fas fa-home"></i></a></li>
@@ -17,20 +18,20 @@
 
     <div class="form-card">
         <h3 class="section-form-title">Adicionar novo Status</h3>
-        <form method="POST" action="/cadastrar-status" class="form-grid">
+        <form class="form-grid">
             <div class="form-group">
                 <label for="codigoStatus">Código Status*</label>
-                <input type="text" id="codigoStatus" name="codigogStatus" required>
+                <input type="text" id="codigoStatus" name="codigoStatus" required>
             </div>
             <div class="form-group">
                 <label for="nomeStatus">Nome do Status*</label>
                 <input type="text" id="nomeStatus" name="nomeStatus" required>
             </div>
             <div class="form-actions">
-                <button type="reset" class="btn btn-secondary">
+                <button type="button" id="btnLimpar" class="btn btn-secondary">
                     <i class="fas fa-times"></i> Limpar
                 </button>
-                <button type="submit" class="btn btn-primary">
+                <button type="button" id="btnAdicionar" class="btn btn-primary">
                     <i class="fas fa-plus"></i> Adicionar
                 </button>
             </div>
@@ -42,24 +43,18 @@
         <table>
             <thead>
                 <tr>
-                    <th style="width: 10%;">Código Status</th>
-                    <th style="width: 85%;">Nome do Status</th>
-                    <th style="width: 5%;">Ações</th>
+                    <th>Código Status</th>
+                    <th>Nome do Status</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
-            <tbody>
-                {% for status in status_list %}
-                <tr>
-                    <td>{{ status.codigo }}</td>
-                    <td>{{ status.nome }}</td>
-                    <td>
-                        <a href="#"><i class="fas fa-edit"></i> Editar</a> |
-                        <a href="#"><i class="fas fa-trash-alt"></i> Excluir</a>
-                    </td>
-                </tr>
-                {% endfor %}
+            <tbody id="tabelaStatus">
+                <!-- Conteúdo será preenchido via JavaScript -->
             </tbody>
         </table>
     </div>
 </div>
+
+<!-- Validações e ações -->
+<script src="{{ url_for('static', filename='js/configuration/status.js') }}"></script>
 {% endblock %}

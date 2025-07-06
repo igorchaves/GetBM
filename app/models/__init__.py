@@ -5,3 +5,5 @@ from .backlog_model import Backlog
 from .seguimento_model import Seguimento
 from .log_model import LogAuditoria
 from .usuario_projeto_model import UsuarioProjeto
+from .status_model import Status
+from .categorias_model import Categoria  

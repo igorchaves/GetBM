@@ -7,6 +7,7 @@ from .projeto_routes import projeto_bp
 from .sprint_routes import sprint_bp
 from .status_routes import status_bp
 from .usuario_routes import usuario_bp
+from .api_sprint import api_sprint_bp
 
 def register_routes(app):
     app.register_blueprint(index_bp)
@@ -18,3 +19,5 @@ def register_routes(app):
     app.register_blueprint(sprint_bp)
     app.register_blueprint(status_bp)
     app.register_blueprint(usuario_bp)
+    app.register_blueprint(api_sprint_bp)
+ 

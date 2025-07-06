@@ -20,7 +20,17 @@ class Sprint(db.Model):
         dias_uteis = self.duracao * 5
         data = self.data_inicio
         while dias_uteis > 0:
-            data += timedelta(days=1)
-            if data.weekday() < 5:
+            if data.weekday() < 5:  # Segunda a sexta
                 dias_uteis -= 1
+            if dias_uteis > 0:
+                data += timedelta(days=1)
         return data
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'nome': self.nome,
+            'data_inicio': self.data_inicio.strftime('%Y-%m-%d'),
+            'data_fim': self.data_fim.strftime('%Y-%m-%d'),
+            'duracao': self.duracao
+        }

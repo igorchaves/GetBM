@@ -34,8 +34,8 @@ def create_app():
     migrate.init_app(app, db)
 
     # ✅ Importa os modelos para garantir que o SQLAlchemy os reconheça
-    from app.models import Sprint, Usuario, Projeto, Backlog, Seguimento, LogAuditoria, UsuarioProjeto
-
+    from app.models import Sprint, Usuario, Projeto, Backlog, Seguimento, LogAuditoria, UsuarioProjeto,Status,Categoria
+    
     # ✅ Importa todos os blueprints
     from app.routes.index_routes import index_bp
     from app.routes.backlog_routes import backlog_bp
@@ -46,11 +46,13 @@ def create_app():
     from app.routes.sprint_routes import sprint_bp
     from app.routes.status_routes import status_bp
     from app.routes.usuario_routes import usuario_bp
+    from app.routes.api_sprint import api_sprint_bp
 
     # ✅ Registra todos os blueprints em bloco
     blueprints = [
         index_bp, backlog_bp, categoria_bp, funcionalidades_bp,
-        organograma_bp, projeto_bp, sprint_bp, status_bp, usuario_bp
+        organograma_bp, projeto_bp, sprint_bp, status_bp, usuario_bp,
+        api_sprint_bp
     ]
 
     for bp in blueprints:

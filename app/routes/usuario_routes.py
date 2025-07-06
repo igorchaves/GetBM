@@ -10,7 +10,7 @@ usuario_bp = Blueprint('usuario_bp', __name__)
 @usuario_bp.route('/usuario')
 def usuario():
     resultados = Usuario.query.filter_by(ativo=True).order_by(Usuario.codigo_usuario).all()
-    return render_template('usuario.html', resultados=resultados)
+    return render_template('admin/usuario.html', resultados=resultados)
 
 # ✅ ROTA PARA CADASTRAR USUÁRIO
 @usuario_bp.route('/cadastrar-usuario', methods=['POST'])
@@ -61,7 +61,7 @@ def perfil(id):
     projetos_usuario_ids = [p.id for p in usuario.projetos]
 
     return render_template(
-        'perfil.html',
+        'admin/perfil.html',
         usuario=usuario,
         todos_projetos=todos_projetos,
         projetos_usuario_ids=projetos_usuario_ids

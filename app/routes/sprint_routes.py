@@ -9,7 +9,7 @@ sprint_bp = Blueprint('sprint_bp', __name__)
 @sprint_bp.route('/sprint')
 def sprint():
     sprints = Sprint.query.filter_by(ativo=True).order_by(Sprint.data_inicio.desc()).all()
-    return render_template('sprint.html', sprints=sprints)
+    return render_template('configuration/sprint.html', sprints=sprints)
 
 # ✅ ROTA PARA CADASTRAR SPRINT
 @sprint_bp.route('/cadastrar-sprint', methods=['POST'])

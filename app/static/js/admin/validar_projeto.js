@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener('reset', function () {
         mensagem.textContent = '';
         mensagem.classList.remove('mostrar', 'erro', 'alert');
+        mensagem.classList.add('d-none');
         document.getElementById('backlogLista').innerHTML = '';
         document.getElementById('jornadaLista').innerHTML = '';
     });
@@ -24,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         mensagem.textContent = '';
         mensagem.classList.remove('mostrar', 'erro', 'alert');
+        mensagem.classList.add('d-none');
 
         try {
             const resposta = await fetch('/verificar-projeto', {
@@ -40,40 +42,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (resultado.existe) {
                 mensagem.textContent = resultado.mensagem;
+                mensagem.classList.remove('d-none');
                 mensagem.classList.add('alert', 'erro', 'mostrar');
                 return;
             }
 
             const botaoSalvar = this.querySelector('button[type="submit"]');
             botaoSalvar.disabled = true;
-            this.submit();
+
+            const salvarResposta = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form)
+            });
+
+            if (salvarResposta.ok) {
+                alert('Projeto cadastrado com sucesso!');
+                window.location.href = urlProjetos;
+            } else {
+                throw new Error('Erro ao salvar projeto');
+            }
 
         } catch (erro) {
             console.error('Erro ao verificar projeto:', erro);
             mensagem.textContent = 'Erro ao verificar projeto. Tente novamente.';
+            mensagem.classList.remove('d-none');
             mensagem.classList.add('alert', 'erro', 'mostrar');
         }
     });
+
+    // Redirecionamento ao cancelar (fora do submit)
+    const btnCancelar = document.getElementById('btn-cancelar');
+    if (btnCancelar) {
+        btnCancelar.addEventListener('click', function () {
+            window.location.href = urlProjetos;
+        });
+    }
 });
-
-function setupTagInput(inputId, listId, inputName) {
-    const input = document.getElementById(inputId);
-    const list = document.getElementById(listId);
-
-    input.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' && input.value.trim() !== '') {
-            e.preventDefault();
-            const valor = input.value.trim();
-
-            const li = document.createElement('li');
-            li.className = 'tag-item';
-            li.innerHTML = `
-                <span>${valor}</span>
-                <button type="button" class="remove-btn" onclick="this.parentElement.remove()">×</button>
-                <input type="hidden" name="${inputName}" value="${valor}">
-            `;
-            list.appendChild(li);
-            input.value = '';
-        }
-    });
-}

@@ -18,7 +18,7 @@
 
     <div class="form-card">
         <h3 class="section-form-title">Adicionar nova Sprint</h3>
-        <form method="POST" action="/cadastrar-sprint" class="form-grid">
+        <form id="form-sprint" class="form-grid">
             <div class="form-group">
                 <label for="sprint">Sprint <span class="required">*</span></label>
                 <input type="text" id="sprint" name="sprint" required>
@@ -41,6 +41,7 @@
             </div>
         </form>
     </div>
+
     <div class="table-card">
         <h3 class="section-form-title">Sprints Cadastradas</h3>
         <table>
@@ -52,31 +53,14 @@
                     <th>Ações</th>
                 </tr>
             </thead>
-            <tbody>
-                {% if sprints %}
-                {% for sprint in sprints %}
-                <tr>
-                    <td>{{ sprint.nome }}</td>
-                    <td>{{ sprint.data_inicio.strftime('%d/%m/%Y') }}</td>
-                    <td>{{ sprint.data_fim.strftime('%d/%m/%Y') }}</td>
-                    <td>
-                        <form action="{{ url_for('sprint_bp.excluir_sprint', id=sprint.id) }}" method="post"
-                            style="display:inline;">
-                            <button type="submit" onclick="return confirm('Deseja realmente excluir esta sprint?')"
-                                class="btn-icon-only">
-                                <i class="fas fa-trash-alt btn-remover"></i>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-                {% else %}
-                <tr>
-                    <td colspan="4" class="text-center">Nenhuma sprint cadastrada.</td>
-                </tr>
-                {% endif %}
+            <tbody id="tabela-sprints">
+                <!-- Conteúdo será preenchido via JavaScript -->
             </tbody>
         </table>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/configuration/sprint.js') }}"></script>
 {% endblock %}
