@@ -1,13 +1,8 @@
-from .index_routes import index_bp
-from .backlog_routes import backlog_bp
-from .categoria_routes import categoria_bp
-from .funcionalidades_routes import funcionalidades_bp
-from .organograma_routes import organograma_bp
-from .projeto_routes import projeto_bp
-from .sprint_routes import sprint_bp
-from .status_routes import status_bp
-from .usuario_routes import usuario_bp
-from .api_sprint import api_sprint_bp
+from app.routes.admin import usuario_bp, projeto_bp
+from app.routes.configuration import status_bp, categoria_bp, funcionalidades_bp, sprint_bp, api_sprint_bp
+from app.routes.home import index_bp
+from app.routes.management import backlog_bp, organograma_bp
+
 
 def register_routes(app):
     app.register_blueprint(index_bp)

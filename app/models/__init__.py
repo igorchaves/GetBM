@@ -1,9 +1,8 @@
-from .sprint_model import Sprint
-from .usuario_model import Usuario
-from .projeto_model import Projeto
-from .backlog_model import Backlog
-from .seguimento_model import Seguimento
-from .log_model import LogAuditoria
-from .usuario_projeto_model import UsuarioProjeto
-from .status_model import Status
-from .categorias_model import Categoria  
+from .admin import Backlog, Projeto, Seguimento, Usuario, UsuarioProjeto
+from .configuration import Categoria, Sprint, Status
+from .utils import LogAuditoria
+
+__all__ = [
+    'Backlog', 'Projeto', 'Seguimento', 'Usuario', 'UsuarioProjeto',
+    'Categoria', 'Sprint', 'Status', 'LogAuditoria'
+]

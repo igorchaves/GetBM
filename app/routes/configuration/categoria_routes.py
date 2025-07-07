@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, jsonify
 from app import db
-from app.models.categorias_model import Categoria  # ajuste conforme o nome real do model
+from app.models.configuration.categorias_model import Categoria  # ajuste conforme o nome real do model
 
 categoria_bp = Blueprint('categoria_bp', __name__)
 
