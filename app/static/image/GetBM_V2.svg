@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1884" height="700" viewBox="0 0 1884 700">
+  <defs>
+    <clipPath id="clip-GetBM">
+      <rect width="1884" height="700"/>
+    </clipPath>
+  </defs>
+  <g id="GetBM" clip-path="url(#clip-GetBM)">
+    <g id="Logo" transform="translate(-196 -686)">
+      <rect id="Retângulo_1" data-name="Retângulo 1" width="266" height="263" rx="41" transform="translate(432 712)" fill="#1271cb"/>
+      <rect id="Retângulo_2" data-name="Retângulo 2" width="193" height="189" rx="41" transform="translate(217 1171)" fill="#42719b"/>
+      <rect id="Retângulo_3" data-name="Retângulo 3" width="193" height="189" rx="41" transform="translate(469 1171)" fill="#273e4e"/>
+      <rect id="Retângulo_4" data-name="Retângulo 4" width="193" height="189" rx="41" transform="translate(721 1171)" fill="#1170ca"/>
+      <g id="Grupo_1" data-name="Grupo 1">
+        <line id="Linha_1" data-name="Linha 1" y2="196" transform="translate(565.5 975.5)" fill="none" stroke="#273e4e" stroke-width="40"/>
+        <path id="Caminho_1" data-name="Caminho 1" d="M264.9,864s-.841-89.5,50.456-94.543,206.029-5.046,206.029-5.046,163.983-.841,208.552,5.046S773.662,864,773.662,864" transform="translate(43 307)" fill="none" stroke="#283f4f" stroke-linejoin="round" stroke-width="45"/>
+      </g>
+    </g>
+    <text id="Gestão_de_Backlog" data-name="Gestão de Backlog" transform="translate(1319 331)" fill="#273e4e" font-size="220" font-family="SegoeUI-Bold, Segoe UI" font-weight="700"><tspan x="-543.662" y="0">Gestão de </tspan><tspan x="-410.62" y="220">Backlog</tspan></text>
+  </g>
+</svg>
