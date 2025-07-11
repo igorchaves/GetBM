@@ -1,11 +1,11 @@
 from app.routes.admin import usuario_bp, projeto_bp
 from app.routes.configuration import status_bp, categoria_bp, funcionalidades_bp, sprint_bp, api_sprint_bp
-from app.routes.home import index_bp
+from app.routes.home import home_bp
 from app.routes.management import backlog_bp, organograma_bp
 
 
 def register_routes(app):
-    app.register_blueprint(index_bp)
+    app.register_blueprint(home_bp)
     app.register_blueprint(backlog_bp)
     app.register_blueprint(categoria_bp)
     app.register_blueprint(funcionalidades_bp)

@@ -1,5 +1,5 @@
 <div id="sidebar" class="sidebar">
-  <a href="{{ url_for('index_bp.index') }}">
+  <a href="{{ url_for('home_bp.index') }}">
     <i class="fas fa-home"></i> <span class="menu-text">Home</span>
   </a>
   <a href="{{ url_for('backlog_bp.backlog') }}">
@@ -37,7 +37,7 @@
     </a>
     <div class="submenu">
       <a href="#">Perfil</a>
-      <a href="#">Sair</a>
+      <a href= "{{ url_for('home_bp.login') }}">Sair</a>
     </div>
   </div>
 </div>

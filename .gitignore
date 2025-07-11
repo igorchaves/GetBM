@@ -22,7 +22,6 @@ instance/getbm.db
 
 # Arquivos de migração e scripts auxiliares
 auto_migrate.py
-migrations/
 
 # Cache do Python
 __pycache__/

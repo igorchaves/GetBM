@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login - GetBM</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body class="login-page">
+    <div class="login-wrapper">
+        <!-- Coluna Esquerda: Formulário -->
+        <div class="login-container">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='image/GetBM_V2.svg') }}" alt="Logo GetBM">
+            </div>
+            <h2>Bem-vindo ao GetBM</h2>
+            <p class="subtitle">Organize seus projetos com eficiência</p>
+            <form method="get" class="login-form">
+                <input type="email" name="email" placeholder="E-mail">
+                <input type="password" name="senha" placeholder="Senha">
+                <div class="form-options">
+                    <label><input type="checkbox" name="remember"> Lembrar-me</label>
+                    <a href="#">Esqueci a senha</a>
+                </div>
+                <a href="{{ url_for('home_bp.index') }}">
+                    <button type="button">Entrar</button>
+                </a>
+            </form>
+
+        </div>
+
+        <!-- Coluna Direita: Imagem e Frase -->
+        <div class="login-visual">
+            <div class="visual-text">
+                <h3>Transforme ideias em projetos reais</h3>
+                <p>Com o GetBM, sua equipe trabalha com mais foco e clareza.</p>
+            </div>
+            <img src="{{ url_for('static', filename='image/login_img.jpg') }}" alt="Ilustração GetBM">
+        </div>
+    </div>
+</body>
+
+</html>

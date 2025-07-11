@@ -1,1 +1,71 @@
-Single-database configuration for Flask.
+# 📁 Pasta `migrations/`
+
+Esta pasta contém os arquivos de controle de migrações do banco de dados gerenciados pelo **Flask-Migrate**, que utiliza o **Alembic** como mecanismo de versionamento.
+
+---
+
+## 📌 Propósito
+
+A pasta `migrations/` armazena o histórico das alterações no schema do banco de dados da aplicação Flask. Isso inclui:
+
+- Scripts de migração gerados com `flask db migrate`
+- Versões aplicáveis com `flask db upgrade`
+- Arquivos de configuração do Alembic
+
+---
+
+## ✅ Por que versionar esta pasta?
+
+A `migrations/` **deve ser versionada no Git** para garantir que:
+
+- Todos os desenvolvedores compartilhem o mesmo histórico de alterações no banco
+- Ambientes como staging e produção possam aplicar as mesmas migrações
+- Pipelines de CI/CD possam executar `flask db upgrade` com segurança
+
+---
+
+## 🧰 Inicialização do sistema de migrações (executar apenas uma vez)
+
+Se esta for a **primeira vez** que você está configurando as migrações no projeto (ou se a pasta `migrations/` ainda não existir), execute:
+
+    ```bash
+        flask db init
+    ```
+---
+
+## 🧪 Uso em desenvolvimento
+
+1. Crie uma nova migração:
+   ```bash
+   flask db migrate -m "Descrição da mudança"
+  ```
+
+2. Versione a pasta migrations/:
+```bash
+    git add migrations/
+    git commit -m "Atualiza migrações"
+ ```
+ 
+---
+
+## 🚀 Uso em produção
+
+1. Certifique-se de que a pasta `migrations/` está presente no repositório (já versionada).
+2. Configure corretamente o arquivo `.env.production` com as variáveis:
+   - `FLASK_ENV=production`
+   - `DATABASE_URL=postgresql://usuario:senha@host:porta/banco`
+   - `SECRET_KEY=uma-chave-segura`
+   - `AUTO_MIGRATE=false`
+3. No ambiente de produção, aplique as migrações com:
+   ```bash
+   flask db upgrade
+   ```
+---
+
+## 🛠️ Observações técnicas
+1. Este projeto utiliza PostgreSQL como banco de dados. Verifique se a variável DATABASE_URL está corretamente configurada no .env.production.
+2. A aplicação requer uma variável SECRET_KEY definida no ambiente para segurança de sessões e autenticação. Essa chave não deve ser compartilhada ou exposta.
+3. O uso de AUTO_MIGRATE=true é recomendado apenas em desenvolvimento. Em produção, mantenha AUTO_MIGRATE=false para evitar execuções automáticas indesejadas.
+
+---
+

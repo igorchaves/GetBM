@@ -1,3 +1,3 @@
-from .index_routes import index_bp
+from .index_routes import home_bp
 
-__all__ = ['index_bp']
+__all__ = ['home_bp']
