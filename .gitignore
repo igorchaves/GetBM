@@ -47,10 +47,6 @@ __pycache__/
 .idea/
 *.sublime-project
 *.sublime-workspace
-*~
-*.bak
-*.tmp
-
 
 # Arquivos de sistema
 .DS_Store
@@ -75,10 +71,8 @@ dist/
 # Arquivos de configuração temporários
 *.rc
 
-# Arquivos e pastas adicionais
+# Pastas e arquivos adicionais
 logs/
-.flaskenv
-Makefile
-run.py
-logs/
-.flaskenv
+
+# Diretório gerado pelo Vercel CLI (opcional)
+.vercel/

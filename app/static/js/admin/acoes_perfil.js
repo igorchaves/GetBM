@@ -76,3 +76,17 @@ function atualizarProjetoSelecionado(input) {
         hiddenInput.value = ''; // Limpa se não for um projeto válido
     }
 }
+
+document.getElementById('formPerfilUsuario').addEventListener('submit', function (e) {
+    const novaSenha = document.getElementById('novaSenha').value;
+    const confirmarSenha = document.getElementById('confirmarSenha').value;
+
+    if (novaSenha || confirmarSenha) {
+        if (novaSenha === confirmarSenha) {
+            alert('Senha será atualizada ao salvar o formulário.');
+        } else {
+            alert('As senhas não coincidem. A senha não será atualizada.');
+        }
+    }
+});
+

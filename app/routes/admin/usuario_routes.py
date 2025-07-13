@@ -1,7 +1,8 @@
-from flask import Blueprint, render_template, request, redirect, url_for, jsonify
-from app.models import Usuario, LogAuditoria, Projeto  # Adicionado Projeto
+from flask import Blueprint, render_template, request, redirect, url_for, jsonify, flash
+from app.models import Usuario, LogAuditoria, Projeto  
 from app import db
 from datetime import datetime
+from werkzeug.security import generate_password_hash
 import json
 
 usuario_bp = Blueprint('usuario_bp', __name__)
@@ -53,7 +54,18 @@ def perfil(id):
         ids_projetos = request.form.getlist('projetosSelecionados[]')
         usuario.projetos = Projeto.query.filter(Projeto.id.in_(ids_projetos)).all()
 
+        # 🔐 Atualiza a senha, se fornecida
+        nova_senha = request.form.get('novaSenha')
+        confirmar_senha = request.form.get('confirmarSenha')
+
+        if nova_senha or confirmar_senha:
+            if nova_senha != confirmar_senha:
+                flash('As senhas não coincidem.', 'error')
+                return redirect(url_for('usuario_bp.perfil', id=id))
+            usuario.senha_hash = generate_password_hash(nova_senha)
+
         db.session.commit()
+        flash('Perfil atualizado com sucesso!', 'success')
         return redirect(url_for('usuario_bp.usuario'))
 
     # Carrega todos os projetos e os projetos do usuário
@@ -100,3 +112,24 @@ def verificar_usuario():
     if usuario:
         return jsonify({'existe': True, 'mensagem': 'Usuário já cadastrado.'})
     return jsonify({'existe': False})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

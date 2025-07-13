@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login - GetBM</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="stylesheet" href=" /static/css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -17,16 +17,19 @@
             </div>
             <h2>Bem-vindo ao GetBM</h2>
             <p class="subtitle">Organize seus projetos com eficiência</p>
-            <form method="get" class="login-form">
-                <input type="email" name="email" placeholder="E-mail">
-                <input type="password" name="senha" placeholder="Senha">
+            <form id="login-form" class="login-form">
+                <label for="usuario">Usuário</label>
+                <input type="text" name="usuario" id="usuario" placeholder="Digite seu código de usuário" required>
+
+                <label for="senha">Senha</label>
+                <input type="password" name="senha" id="senha" placeholder="Digite sua senha" required>
+
                 <div class="form-options">
                     <label><input type="checkbox" name="remember"> Lembrar-me</label>
                     <a href="#">Esqueci a senha</a>
                 </div>
-                <a href="{{ url_for('home_bp.index') }}">
-                    <button type="button">Entrar</button>
-                </a>
+
+                <button type="submit">Entrar</button>
             </form>
 
         </div>
@@ -41,5 +44,6 @@
         </div>
     </div>
 </body>
+<script src="{{ url_for('static', filename='js/auth/login.js') }}"></script>
 
 </html>
