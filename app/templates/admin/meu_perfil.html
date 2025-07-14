@@ -21,12 +21,12 @@
             <h3 class="section-form-title">Perfil do Usuário</h3>
         </div>
 
-       <div class="perfil-tabs">
+        <div class="perfil-tabs">
             <button class="perfil-tab-button active" onclick="abrirAbaPerfil()">Perfil</button>
             <button class="perfil-tab-button" onclick="abrirAbaSeguranca()">Segurança</button>
         </div>
 
-        <form id="formPerfilUsuario" method="POST" action="{{ url_for('usuario_bp.perfil', id=usuario.id) }}">
+        <form id="formPerfilUsuario" method="POST" action="{{ url_for('usuario_bp.meu_perfil') }}">
             <!-- Aba Perfil -->
             <div id="abaPerfil" class="perfil-tab-content active">
                 <div class="perfil-container">
@@ -103,7 +103,7 @@
             </div>
 
             <!-- Aba Segurança -->
-        <div id="abaSeguranca" class="perfil-tab-content">
+            <div id="abaSeguranca" class="perfil-tab-content">
                 <div class="perfil-container">
 
                     <!-- Campos de Redefinição de Senha -->
@@ -133,6 +133,7 @@
                     </div>
                 </div>
             </div>
+
         </form>
 
         <!-- Botões fora do form, na parte inferior direita -->

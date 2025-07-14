@@ -3,6 +3,7 @@ from app.models import Usuario, LogAuditoria, Projeto
 from app import db
 from datetime import datetime
 from werkzeug.security import generate_password_hash
+from app.auth.auth_utils import login_requerido, obter_usuario_logado
 import json
 
 usuario_bp = Blueprint('usuario_bp', __name__)
@@ -114,22 +115,35 @@ def verificar_usuario():
     return jsonify({'existe': False})
 
 
+# ✅ ROTA PARA VERIFICAR MEU PERFIL
+@usuario_bp.route('/meu-perfil', methods=['GET', 'POST'])
+@login_requerido
+def meu_perfil():
+    usuario = obter_usuario_logado()  # ← Aqui você pega o usuário logado via JWT
 
+    if request.method == 'POST':
+        usuario.nome_usuario = request.form['nomeCompleto']
+        usuario.email = request.form.get('emailUsuario')
+        usuario.telefone = request.form.get('telefoneUsuario')
 
+        nova_senha = request.form.get('novaSenha')
+        confirmar_senha = request.form.get('confirmarSenha')
+        if nova_senha or confirmar_senha:
+            if nova_senha != confirmar_senha:
+                flash('As senhas não coincidem.', 'error')
+                return redirect(url_for('usuario_bp.meu_perfil'))
+            usuario.senha_hash = generate_password_hash(nova_senha)
 
+        db.session.commit()
+        flash('Perfil atualizado com sucesso!', 'success')
+        return redirect(url_for('usuario_bp.meu_perfil'))
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    # Carrega os projetos para exibir no formulário
+    todos_projetos = Projeto.query.all()
+    projetos_usuario_ids = [p.id for p in usuario.projetos]
+    return render_template(
+        'admin/meu_perfil.html',
+        usuario=usuario,
+        todos_projetos=todos_projetos,
+        projetos_usuario_ids=projetos_usuario_ids
+    )

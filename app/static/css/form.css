@@ -253,3 +253,28 @@
   font-size: 14px;
   cursor: pointer;
 }
+
+/* Força da senha aba segurança*/
+.senha-requisitos li {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 13px;
+}
+
+.senha-requisitos .invalido {
+    color: red;
+}
+
+.senha-requisitos .valido {
+    color: green;
+}
+
+.senha-requisitos {
+    list-style: none;
+    padding-left: 0;
+}
+
+.senha-requisitos li {
+    font-weight: bold;
+    margin-bottom: 5px;
+}

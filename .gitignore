@@ -76,3 +76,4 @@ logs/
 
 # Diretório gerado pelo Vercel CLI (opcional)
 .vercel/
+makefile

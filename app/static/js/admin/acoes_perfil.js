@@ -1,16 +1,21 @@
 function abrirAbaPerfil() {
     document.getElementById('abaPerfil').classList.add('active');
     document.getElementById('abaSeguranca').classList.remove('active');
-    document.querySelectorAll('.tab-button')[0].classList.add('active');
-    document.querySelectorAll('.tab-button')[1].classList.remove('active');
+
+    const botoes = document.querySelectorAll('.perfil-tab-button');
+    botoes[0].classList.add('active');
+    botoes[1].classList.remove('active');
 }
 
 function abrirAbaSeguranca() {
     document.getElementById('abaPerfil').classList.remove('active');
     document.getElementById('abaSeguranca').classList.add('active');
-    document.querySelectorAll('.tab-button')[0].classList.remove('active');
-    document.querySelectorAll('.tab-button')[1].classList.add('active');
+
+    const botoes = document.querySelectorAll('.perfil-tab-button');
+    botoes[0].classList.remove('active');
+    botoes[1].classList.add('active');
 }
+
 
 function adicionarGrupoAcesso() {
     const container = document.getElementById('gruposAcessoContainer');
@@ -49,13 +54,11 @@ function removerGrupoAcesso(botao) {
     const itens = container.querySelectorAll('.perfil-grupo-acesso-item');
     const radioSelecionado = container.querySelector('input[type="radio"]:checked');
 
-    // Impede remover se for o último item
     if (itens.length <= 1) {
         alert("Você não pode remover o último grupo de acesso.");
         return;
     }
 
-    // Impede remover o item que está selecionado
     if (item.contains(radioSelecionado)) {
         alert("Você não pode remover o grupo de acesso selecionado.");
         return;
@@ -70,11 +73,7 @@ function atualizarProjetoSelecionado(input) {
     const valorDigitado = input.value;
 
     const optionSelecionada = Array.from(datalist.options).find(opt => opt.value === valorDigitado);
-    if (optionSelecionada) {
-        hiddenInput.value = optionSelecionada.dataset.id;
-    } else {
-        hiddenInput.value = ''; // Limpa se não for um projeto válido
-    }
+    hiddenInput.value = optionSelecionada ? optionSelecionada.dataset.id : '';
 }
 
 document.getElementById('formPerfilUsuario').addEventListener('submit', function (e) {
@@ -89,4 +88,3 @@ document.getElementById('formPerfilUsuario').addEventListener('submit', function
         }
     }
 });
-
