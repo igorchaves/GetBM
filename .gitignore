@@ -62,6 +62,7 @@ Thumbs.db
 # Diretórios e arquivos locais
 tmp/
 .localdev/
+Makefile
 
 # Arquivos de build
 build/
@@ -76,4 +77,4 @@ logs/
 
 # Diretório gerado pelo Vercel CLI (opcional)
 .vercel/
-makefile
+
